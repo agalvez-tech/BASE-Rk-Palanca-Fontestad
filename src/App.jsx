@@ -211,13 +211,13 @@ export default function App() {
     <>
       <header className={`topbar${topbarPegada ? ' pegada' : ''}`}>
         <a className="marca" href="#top">
-          <span className="rk">R<span>K</span></span>
-          <span className="nombre">Palanca Fontestad · by Realmark</span>
+          <img className="logo-topbar" src="/logo-horiz-negro.png" alt="RK Palanca Fontestad · by Realmark Inmobiliaria" />
         </a>
         <button className="btn-add" onClick={abrirModal}><MasIcono /> Añadir proceso</button>
       </header>
 
       <section className="hero" id="top">
+        <img className="logo-hero" src="/logo-vert-blanco.png" alt="" />
         <div className="estrellas" aria-hidden="true">
           {estrellas.map((e) => (
             <i key={e.id} className="estrella" style={{ left: `${e.x}%`, top: `${e.y}%`, width: `${e.s}px`, height: `${e.s}px`, opacity: e.o, '--d': `${e.d}s`, '--r': `${e.r}s` }} />

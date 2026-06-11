@@ -442,3 +442,15 @@ footer{padding:34px 28px 42px;text-align:center}
   html{scroll-behavior:auto}
   .revelar{opacity:1;transform:none}
 }
+
+/* =============== LOGOS OFICIALES =============== */
+.logo-topbar{height:36px;width:auto;display:block}
+.logo-hero{
+  position:absolute;top:44px;left:56px;z-index:4;
+  width:175px;height:auto;
+  animation:alzar .8s ease .05s both;
+}
+@media (max-width:680px){
+  .logo-topbar{height:30px}
+  .logo-hero{top:24px;left:24px;width:120px}
+}
