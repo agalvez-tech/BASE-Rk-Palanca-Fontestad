@@ -44,7 +44,7 @@ export const PROCESOS_BASE = [
   { cat: 'Alquiler', tipo: 'FORM', nombre: 'Formulario alquiler · Inquilinos', url: 'https://docs.google.com/forms/d/e/1FAIpQLSf1vTpZPTHmTgcuYsGNffh15PeeJEc_n5MaRfSIvKnd5bElqA/viewform?usp=sf_link', desc: 'Recogida de datos y documentación de candidatos inquilinos.' },
   { cat: 'Conocimiento · NotebookLM', tipo: 'NOTEBOOK', nombre: 'Alquileres', url: 'https://notebooklm.google.com/notebook/886c09d7-a266-4fe6-84f8-1cd312e73965?pli=1', desc: 'Base de conocimiento con toda la operativa de alquileres.' },
 
-  { cat: 'Fotografía', tipo: 'APP', nombre: 'App de fotografía', url: 'https://infopalanca.github.io/formulario-reportaje/', desc: 'Solicitud de reportaje fotográfico para un inmueble.' },
+  { cat: 'Fotografía', tipo: 'APP', nombre: 'Formulario Solicitud de fotografía', url: 'https://infopalanca.github.io/formulario-reportaje/', desc: 'Solicitud de reportaje fotográfico para un inmueble.' },
 
   { cat: 'Conocimiento · NotebookLM', tipo: 'NOTEBOOK', nombre: 'Conocimiento Inmobiliaria RK Palanca Fontestad', url: 'https://notebooklm.google.com/notebook/53a7e5f1-0e45-4e52-af62-9b82f93f0f24', desc: 'Conocimiento general de la agencia: quiénes somos y cómo trabajamos.' },
   { cat: 'Conocimiento · NotebookLM', tipo: 'NOTEBOOK', nombre: 'Operativa RK Palanca Fontestad', url: 'https://notebooklm.google.com/notebook/1205e552-281e-4167-baa6-132b0c8ddca3', desc: 'Procesos operativos del día a día de la oficina.' },
