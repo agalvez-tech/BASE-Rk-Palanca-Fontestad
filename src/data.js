@@ -30,16 +30,16 @@ export const CRM = [
 ]
 
 export const PROCESOS_BASE = [
-  { cat: 'Captación y venta', tipo: 'APP', nombre: 'Alta de viviendas', url: 'https://marketingipf.github.io/Captacion/', desc: 'Proceso completo de alta de un inmueble nuevo en cartera.' },
+  { cat: 'Captación y venta', tipo: 'APP', nombre: 'Alta de viviendas', url: 'https://captacion2.vercel.app/', desc: 'Proceso completo de alta de un inmueble nuevo en cartera.' },
   { cat: 'Captación y venta', tipo: 'DOC', nombre: 'Exclusiva vendedor', url: 'https://docs.google.com/document/d/1yYGnmdEpcgCSAfO0UFc54XKBycbTSlO4w5oX-_LU1Hw/edit?tab=t.0#heading=h.gjdgxs', desc: 'Contrato de encargo en exclusiva con el propietario vendedor.' },
   { cat: 'Captación y venta', tipo: 'DOC', nombre: 'Oferta de compra', url: 'https://docs.google.com/document/d/1N689jUaNGpDScfbL8SRGydOt9Qu8Rvk7/edit', desc: 'Documento de oferta de compra estándar.' },
   { cat: 'Captación y venta', tipo: 'DOC', nombre: 'Oferta de compra ASICVAL', url: 'https://docs.google.com/document/d/1KRj52EXV8I_A2VG4ZmO7BLXxSnzi03P6/edit', desc: 'Versión de oferta de compra con modelo ASICVAL.' },
   { cat: 'Captación y venta', tipo: 'APP', nombre: 'Formulario arras · Comprador y vendedor', url: 'https://contrato-arras-522842131600.europe-west3.run.app/', desc: 'Genera el contrato de arras con los datos de comprador y vendedor.' },
   { cat: 'Captación y venta', tipo: 'APP', nombre: 'Informe para bajada precio propietarios', url: 'https://informes-de-evaluaci-n.agalvez.workers.dev/', desc: 'Genera el informe de valoración (IRM) con la marca RK a partir del PDF de evaluación.' },
 
+  { cat: 'Captación y venta', tipo: 'DOC', nombre: 'Aceptación del arrendatario · visitas y venta', url: 'https://docs.google.com/document/d/1hrBHr7lgJRMJi4slAyYFYd2_ciNV7KCs/edit#heading=h.gjdgxs', desc: 'Autorización del inquilino actual para realizar visitas y venta del inmueble.' },
   { cat: 'Alquiler', tipo: 'DOC', nombre: 'Exclusiva alquiler', url: 'https://docs.google.com/document/d/1McmBFsz7e4liyyJVOw5wURoN7O7v-Rt7/edit', desc: 'Encargo en exclusiva para gestión de alquiler.' },
   { cat: 'Alquiler', tipo: 'DOC', nombre: 'Oferta de alquiler', url: 'https://docs.google.com/document/d/1ckzySAfR5D4UanBibvRSDyXrHCYbyptxUYNIt8UIm50/edit?tab=t.0', desc: 'Documento de oferta de alquiler para inquilinos.' },
-  { cat: 'Alquiler', tipo: 'DOC', nombre: 'Aceptación del arrendatario · visitas y venta', url: 'https://docs.google.com/document/d/1hrBHr7lgJRMJi4slAyYFYd2_ciNV7KCs/edit#heading=h.gjdgxs', desc: 'Autorización del inquilino actual para realizar visitas y venta del inmueble.' },
   { cat: 'Alquiler', tipo: 'FORM', nombre: 'Formulario alquiler · Propietario', url: 'https://docs.google.com/forms/d/e/1FAIpQLSdz7GAzmIhKVfhntMVBybW5AyeQxhh4AJC7BjqzWOjBYjUtuw/viewform?usp=sf_link', desc: 'Recogida de datos del propietario para gestionar el alquiler.' },
   { cat: 'Alquiler', tipo: 'FORM', nombre: 'Formulario alquiler · Inquilinos', url: 'https://docs.google.com/forms/d/e/1FAIpQLSf1vTpZPTHmTgcuYsGNffh15PeeJEc_n5MaRfSIvKnd5bElqA/viewform?usp=sf_link', desc: 'Recogida de datos y documentación de candidatos inquilinos.' },
   { cat: 'Conocimiento · NotebookLM', tipo: 'NOTEBOOK', nombre: 'Alquileres', url: 'https://notebooklm.google.com/notebook/886c09d7-a266-4fe6-84f8-1cd312e73965?pli=1', desc: 'Base de conocimiento con toda la operativa de alquileres.' },
