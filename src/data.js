@@ -6,6 +6,7 @@ export const CATEGORIAS_BASE = [
   'Gems · Gestión y marketing',
   'Entrenamiento · Llamadas y visitas',
   'Ayuda legal · GPTs',
+  'Proceso de firma y postventa',
 ]
 
 export const CRM = [
@@ -71,4 +72,12 @@ export const PROCESOS_BASE = [
   { cat: 'Ayuda legal · GPTs', tipo: 'GPT', nombre: 'Abogado · Ley de Arrendamientos Urbanos', url: 'https://chatgpt.com/g/g-9MWz3YvPo-abogado-en-ley-de-arrendamientos-urbanos-espana?model=gpt-4o', desc: 'Consultas sobre la LAU y contratos de arrendamiento en España.' },
   { cat: 'Ayuda legal · GPTs', tipo: 'GPT', nombre: 'Asesor AEAT', url: 'https://chatgpt.com/g/g-67324cc744fc8190880065cc444cc8a8-asesor-aeat?model=gpt-5-thinking', desc: 'Dudas fiscales y trámites con la Agencia Tributaria.' },
   { cat: 'Ayuda legal · GPTs', tipo: 'GPT', nombre: 'Asistente IA Gestión', url: 'https://chatgpt.com/g/g-St0AerrNy-asistente-iagestion', desc: 'Soporte sobre el uso del CRM IA Gestión.' },
+
+  { cat: 'Proceso de firma y postventa', tipo: 'DOC', nombre: 'Control de compraventa', url: 'https://docs.google.com/document/d/1bnBIoe1TXv0zy7wR8uOUJFFFLg4SdesZ/edit', desc: 'Checklist completo de la operación: datos de firma, documentación pre-firma, gestión económica y trámites postventa.' },
+  { cat: 'Proceso de firma y postventa', tipo: 'DOC', nombre: 'Autorización · Cambio de titular de suministros', url: 'https://docs.google.com/document/d/1cQtRcXNgIeuRbzbdiZjyZhFlCiCRMk0D/edit', desc: 'Agua, luz y gas con domiciliación bancaria a nombre del nuevo titular.' },
+  { cat: 'Proceso de firma y postventa', tipo: 'DOC', nombre: 'Autorización · Plusvalía municipal', url: 'https://docs.google.com/document/d/1a1sBnE829MOpUYOMEyNZy_GuGlb7xK9L/edit', desc: 'Presentación del Impuesto sobre el Incremento de Valor de los Terrenos (IIVTNU).' },
+  { cat: 'Proceso de firma y postventa', tipo: 'DOC', nombre: 'Autorización · Duplicado del CEE', url: 'https://docs.google.com/document/d/1A_DXUFGOOtGW__wbp2AS4ozeJMEy6gtq/edit', desc: 'Solicitud de duplicado del Certificado de Eficiencia Energética del inmueble.' },
+  { cat: 'Proceso de firma y postventa', tipo: 'DOC', nombre: 'Autorización · Certificado de IBI', url: 'https://docs.google.com/document/d/10khxH3CGDG4JfaqmCqB1Uvgrvv8BytVN/edit', desc: 'Acreditación de estar al corriente de pago del IBI ante el Ayuntamiento.' },
+  { cat: 'Proceso de firma y postventa', tipo: 'DOC', nombre: 'Liquidación de IBI en notaría', url: 'https://docs.google.com/document/d/1892qsAXZFms0b715BSHeOtWsmPFJHWT0/edit', desc: 'Acuerdo de prorrateo del IBI entre comprador y vendedor.' },
+  { cat: 'Proceso de firma y postventa', tipo: 'DOC', nombre: 'Autorización · Visado VPO', url: 'https://docs.google.com/document/d/1_10_QO_MBpxA2HENVTfr8v7CyTGglo8K/edit', desc: 'Tramitación del visado para vivienda de protección pública de promoción privada.' },
 ]
