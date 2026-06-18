@@ -3,6 +3,7 @@ export const CATEGORIAS_BASE = [
   'Alquiler',
   'Fotografía',
   'Conocimiento · NotebookLM',
+  'Cómo trabajamos en RK',
   'Gems · Gestión y marketing',
   'Entrenamiento · Llamadas y visitas',
   'Ayuda legal · GPTs',
@@ -57,6 +58,8 @@ export const PROCESOS_BASE = [
   { cat: 'Conocimiento · NotebookLM', tipo: 'NOTEBOOK', nombre: 'Formaciones', url: 'https://notebooklm.google.com/notebook/d07b5695-fe7f-4a8a-9567-f04120a7a94e', desc: 'Material de las formaciones internas del equipo.' },
   { cat: 'Conocimiento · NotebookLM', tipo: 'NOTEBOOK', nombre: 'Obra nueva', url: 'https://notebooklm.google.com/notebook/a695c796-4880-4767-8324-adf31e5f0dc9', desc: 'Conocimiento específico del departamento de obra nueva.' },
 
+  { cat: 'Cómo trabajamos en RK', tipo: 'WEB', nombre: 'Generación y asignación de contactos', url: 'https://manual-contactos.vercel.app/', desc: 'Cómo se clasifican, reparten y asignan los contactos. Reglas, comisiones y puntos Horus.' },
+  { cat: 'Cómo trabajamos en RK', tipo: 'WEB', nombre: 'Tu ruta de crecimiento', url: 'https://ruta-crecimiento.vercel.app/', desc: 'El sistema de niveles RK: del Escudero a Top Producer. Qué desbloquea cada nivel.' },
   { cat: 'Gems · Gestión y marketing', tipo: 'GEM', nombre: 'Asistente legal', url: 'https://gemini.google.com/gem/5d3a384d500e', desc: 'Resuelve dudas legales del día a día comercial.' },
   { cat: 'Gems · Gestión y marketing', tipo: 'GEM', nombre: 'Descripción de viviendas', url: 'https://gemini.google.com/gem/360bc9e24e5b', desc: 'Redacta descripciones atractivas para los anuncios de inmuebles.' },
   { cat: 'Gems · Gestión y marketing', tipo: 'GEM', nombre: 'Creador de contenido', url: 'https://gemini.google.com/gem/2980ff6ea475', desc: 'Genera contenido de marketing con la voz de la marca.' },
