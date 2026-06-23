@@ -1,5 +1,7 @@
 export const CATEGORIAS_BASE = [
-  'Captación y venta',
+  'Captación',
+  'Venta y compraventa',
+  'Generación de negocio',
   'Alquiler',
   'Fotografía',
   'Conocimiento · NotebookLM',
@@ -29,19 +31,39 @@ export const CRM = [
     estilo: 'iag',
     icono: 'IA',
   },
+  {
+    id: 'firmas',
+    etiqueta: 'Agenda · Notaría',
+    nombre: 'CALENDARIO DE FIRMAS',
+    desc: 'Próximas firmas en notaría',
+    url: 'https://rk-firmas-notaria.vercel.app/',
+    estilo: 'firmas',
+    icono: '📅',
+  },
 ]
 
 export const PROCESOS_BASE = [
-  { cat: 'Captación y venta', tipo: 'APP', nombre: 'Alta de viviendas', url: 'https://captacion2.vercel.app/', desc: 'Proceso completo de alta de un inmueble nuevo en cartera.' },
-  { cat: 'Captación y venta', tipo: 'DOC', nombre: 'Exclusiva vendedor', url: 'https://docs.google.com/document/d/1yYGnmdEpcgCSAfO0UFc54XKBycbTSlO4w5oX-_LU1Hw/edit?tab=t.0#heading=h.gjdgxs', desc: 'Contrato de encargo en exclusiva con el propietario vendedor.' },
-  { cat: 'Captación y venta', tipo: 'DOC', nombre: 'Oferta de compra', url: 'https://docs.google.com/document/d/1N689jUaNGpDScfbL8SRGydOt9Qu8Rvk7/edit', desc: 'Documento de oferta de compra estándar.' },
-  { cat: 'Captación y venta', tipo: 'DOC', nombre: 'Oferta de compra ASICVAL', url: 'https://docs.google.com/document/d/1KRj52EXV8I_A2VG4ZmO7BLXxSnzi03P6/edit', desc: 'Versión de oferta de compra con modelo ASICVAL.' },
-  { cat: 'Captación y venta', tipo: 'APP', nombre: 'Formulario arras · Comprador y vendedor', url: 'https://contrato-arras-522842131600.europe-west3.run.app/', desc: 'Genera el contrato de arras con los datos de comprador y vendedor.' },
-  { cat: 'Captación y venta', tipo: 'APP', nombre: 'Informe para bajada precio propietarios', url: 'https://informes-de-evaluaci-n.agalvez.workers.dev/', desc: 'Genera el informe de valoración (IRM) con la marca RK a partir del PDF de evaluación.' },
+  // ---------- Captación ----------
+  { cat: 'Captación', tipo: 'APP', nombre: 'Alta de viviendas', url: 'https://captacion2.vercel.app/', desc: 'Proceso completo de alta de un inmueble nuevo en cartera.' },
+  { cat: 'Captación', tipo: 'DOC', nombre: 'Exclusiva vendedor', url: 'https://docs.google.com/document/d/1yYGnmdEpcgCSAfO0UFc54XKBycbTSlO4w5oX-_LU1Hw/edit?tab=t.0#heading=h.gjdgxs', desc: 'Contrato de encargo en exclusiva con el propietario vendedor.' },
+  { cat: 'Captación', tipo: 'DOC', nombre: 'Aceptación del arrendatario · visitas y venta', url: 'https://docs.google.com/document/d/1hrBHr7lgJRMJi4slAyYFYd2_ciNV7KCs/edit#heading=h.gjdgxs', desc: 'Autorización del inquilino actual para realizar visitas y venta del inmueble.' },
+  { cat: 'Captación', tipo: 'PDF', nombre: 'Coste de acciones de marketing', url: 'https://drive.google.com/file/d/1-LyddzGJl3Rd9tvR_7mRosicRBXbHEx-/view', desc: 'Lo que invertimos en vender una vivienda: coste de cada acción y contactos que genera. Argumentario para el propietario.' },
+  { cat: 'Captación', tipo: 'PDF', nombre: 'Proceso de venta en 12 pasos', url: 'https://drive.google.com/file/d/1ZbViJoXViddGvDOfs9frZgvqNohpazS2/view', desc: 'Cómo vendemos su vivienda: el recorrido completo de Hoy a la notaría en 12 pasos.' },
+  { cat: 'Captación', tipo: 'DOC', nombre: 'Autorización · CEE', url: 'https://docs.google.com/document/d/1Sf5LY--xm9SsUg2VGw8urdWN2ocXKd1O/edit#heading=h.gjdgxs', desc: 'Autorización para la tramitación del Certificado de Eficiencia Energética.' },
 
-  { cat: 'Captación y venta', tipo: 'DOC', nombre: 'Aceptación del arrendatario · visitas y venta', url: 'https://docs.google.com/document/d/1hrBHr7lgJRMJi4slAyYFYd2_ciNV7KCs/edit#heading=h.gjdgxs', desc: 'Autorización del inquilino actual para realizar visitas y venta del inmueble.' },
-    { cat: 'Captación y venta', tipo: 'PDF', nombre: 'Certificado de titularidad · BBVA (reservas)', url: 'https://drive.google.com/file/d/1umduiXpIXQNsjsbsWN1VfkkffByeae5K/view', desc: 'Cuenta para el ingreso de reservas. Titular: Prodeinmo 99 Consultores.' },
-  { cat: 'Captación y venta', tipo: 'PDF', nombre: 'Certificado de titularidad · Santander (honorarios)', url: 'https://drive.google.com/file/d/1C0whMraCj8SWhcKGKq1x8Qodh-cYTdXP/view', desc: 'Cuenta para el pago de honorarios. Titular: Prodeinmo 99 Consultores.' },
+  // ---------- Venta y compraventa ----------
+  { cat: 'Venta y compraventa', tipo: 'DOC', nombre: 'Oferta de compra (rellenar en la vivienda)', url: 'https://docs.google.com/document/d/1N689jUaNGpDScfbL8SRGydOt9Qu8Rvk7/edit', desc: 'Documento para rellenar a mano cuando el cliente firma la oferta en la propia vivienda.' },
+  { cat: 'Venta y compraventa', tipo: 'APP', nombre: 'Propuesta de compra · preparar y firma digital', url: 'https://propuesta-compra.vercel.app/', desc: 'Prepara la propuesta y envíala a firmar por Signaturit o en firma presencial.' },
+  { cat: 'Venta y compraventa', tipo: 'DOC', nombre: 'Oferta de compra ASICVAL', url: 'https://docs.google.com/document/d/1KRj52EXV8I_A2VG4ZmO7BLXxSnzi03P6/edit', desc: 'Versión de oferta de compra con modelo ASICVAL.' },
+  { cat: 'Venta y compraventa', tipo: 'APP', nombre: 'Formulario arras · Comprador y vendedor', url: 'https://contrato-arras-522842131600.europe-west3.run.app/', desc: 'Genera el contrato de arras con los datos de comprador y vendedor.' },
+  { cat: 'Venta y compraventa', tipo: 'PDF', nombre: 'Desglose de gastos de venta', url: 'https://drive.google.com/file/d/1PfZg-Ice9jumL6nywFrKa-p16a_tWOQV/view', desc: 'Gastos que asume el vendedor (plusvalía, notaría, honorarios, CEE…) y total neto que percibirá.' },
+  { cat: 'Venta y compraventa', tipo: 'APP', nombre: 'Informe para bajada precio propietarios', url: 'https://informes-de-evaluaci-n.agalvez.workers.dev/', desc: 'Genera el informe de valoración (IRM) con la marca RK a partir del PDF de evaluación.' },
+  { cat: 'Venta y compraventa', tipo: 'PDF', nombre: 'Certificado de titularidad · BBVA (reservas)', url: 'https://drive.google.com/file/d/1umduiXpIXQNsjsbsWN1VfkkffByeae5K/view', desc: 'Cuenta para el ingreso de reservas. Titular: Prodeinmo 99 Consultores.' },
+  { cat: 'Venta y compraventa', tipo: 'PDF', nombre: 'Certificado de titularidad · Santander (honorarios)', url: 'https://drive.google.com/file/d/1C0whMraCj8SWhcKGKq1x8Qodh-cYTdXP/view', desc: 'Cuenta para el pago de honorarios. Titular: Prodeinmo 99 Consultores.' },
+
+  // ---------- Generación de negocio ----------
+  { cat: 'Generación de negocio', tipo: 'DOC', nombre: 'Contrato Win Win', url: 'https://docs.google.com/document/d/1LMlXH28d0A6HjOCFtEbnw8QSVizfvOns/edit', desc: 'Acuerdo de colaboración Win Win para generación de negocio.' },
+
   { cat: 'Alquiler', tipo: 'DOC', nombre: 'Exclusiva alquiler', url: 'https://docs.google.com/document/d/1McmBFsz7e4liyyJVOw5wURoN7O7v-Rt7/edit', desc: 'Encargo en exclusiva para gestión de alquiler.' },
   { cat: 'Alquiler', tipo: 'DOC', nombre: 'Oferta de alquiler', url: 'https://docs.google.com/document/d/1ckzySAfR5D4UanBibvRSDyXrHCYbyptxUYNIt8UIm50/edit?tab=t.0', desc: 'Documento de oferta de alquiler para inquilinos.' },
   { cat: 'Alquiler', tipo: 'FORM', nombre: 'Formulario alquiler · Propietario', url: 'https://docs.google.com/forms/d/e/1FAIpQLSdz7GAzmIhKVfhntMVBybW5AyeQxhh4AJC7BjqzWOjBYjUtuw/viewform?usp=sf_link', desc: 'Recogida de datos del propietario para gestionar el alquiler.' },

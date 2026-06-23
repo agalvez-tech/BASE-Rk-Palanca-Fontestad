@@ -175,7 +175,7 @@ body{
   margin-bottom:14px;
 }
 .crm-titulo::after{content:'';flex:1;height:1px;background:var(--linea)}
-.crm-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.crm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .lanzadera{
   position:relative;display:flex;align-items:center;gap:20px;
   text-decoration:none;
@@ -222,6 +222,19 @@ body{
 .lz-iag:hover{box-shadow:0 22px 50px rgba(207,115,27,.5)}
 .lz-iag .icono{background:rgba(255,255,255,.18);color:#fff}
 .lz-iag .ir{background:#fff;color:var(--naranja)}
+/* CALENDARIO FIRMAS: crema con borde naranja, contraste con las otras dos */
+.lz-firmas{background:var(--blanco);color:var(--tinta);border:1.5px solid var(--linea);box-shadow:0 14px 36px rgba(22,19,15,.08)}
+.lz-firmas::before{
+  content:'';position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%, #ffe6c4, var(--naranja-suave) 70%, transparent 78%);
+  transition:transform .35s ease;
+}
+.lz-firmas:hover{box-shadow:0 22px 50px rgba(207,115,27,.22);border-color:#f0d9bd}
+.lz-firmas:hover::before{transform:scale(1.18)}
+.lz-firmas .etiqueta{color:var(--naranja);opacity:1}
+.lz-firmas .icono{background:var(--naranja-suave);color:var(--naranja);font-size:24px}
+.lz-firmas .desc{color:var(--gris)}
+.lz-firmas .ir{background:var(--naranja);color:#fff}
 
 /* =============== MARQUEE =============== */
 .marquee{
