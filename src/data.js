@@ -40,6 +40,15 @@ export const CRM = [
     estilo: 'firmas',
     icono: '📅',
   },
+  {
+    id: 'vacaciones',
+    etiqueta: 'Equipo · Cuadrante',
+    nombre: 'VACACIONES Y ALIADOS',
+    desc: 'Quién está de vacaciones y su aliado',
+    url: 'https://rk-vacaciones-aliados.vercel.app/',
+    estilo: 'vacaciones',
+    icono: '🌴',
+  },
 ]
 
 export const PROCESOS_BASE = [
