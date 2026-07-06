@@ -2,6 +2,7 @@ export const CATEGORIAS_BASE = [
   'Captación',
   'Venta y compraventa',
   'Generación de negocio',
+  'Calculadoras',
   'Alquiler',
   'Fotografía',
   'Conocimiento · NotebookLM',
@@ -36,7 +37,7 @@ export const CRM = [
     etiqueta: 'Agenda · Notaría',
     nombre: 'CALENDARIO DE FIRMAS',
     desc: 'Próximas firmas en notaría',
-    url: 'https://rk-firmas-notaria.vercel.app/',
+    url: 'https://contratos-498808.web.app/',
     estilo: 'firmas',
     icono: '📅',
   },
@@ -72,6 +73,10 @@ export const PROCESOS_BASE = [
 
   // ---------- Generación de negocio ----------
   { cat: 'Generación de negocio', tipo: 'DOC', nombre: 'Contrato Win Win', url: 'https://docs.google.com/document/d/1LMlXH28d0A6HjOCFtEbnw8QSVizfvOns/edit', desc: 'Acuerdo de colaboración Win Win para generación de negocio.' },
+
+  { cat: 'Calculadoras', tipo: 'APP', nombre: 'Calculadora de gastos · Comprador', url: 'https://calculadora-de-gastos-theta.vercel.app/', desc: 'Calcula los gastos de compra del cliente (ITP/AJD, notaría, registro, gestoría…).' },
+  { cat: 'Calculadoras', tipo: 'APP', nombre: 'Calculadora de rentabilidad', url: 'https://calculadora-rentabilidad-one.vercel.app/', desc: 'Rentabilidad de una inversión inmobiliaria para el cliente inversor.' },
+  { cat: 'Calculadoras', tipo: 'APP', nombre: 'Calculadora de compra VPO/VPP', url: 'https://compra-vpo-vpp.vercel.app/', desc: 'Cálculos para la compra de vivienda de protección oficial / pública.' },
 
   { cat: 'Alquiler', tipo: 'DOC', nombre: 'Exclusiva alquiler', url: 'https://docs.google.com/document/d/1McmBFsz7e4liyyJVOw5wURoN7O7v-Rt7/edit', desc: 'Encargo en exclusiva para gestión de alquiler.' },
   { cat: 'Alquiler', tipo: 'DOC', nombre: 'Oferta de alquiler', url: 'https://docs.google.com/document/d/1ckzySAfR5D4UanBibvRSDyXrHCYbyptxUYNIt8UIm50/edit?tab=t.0', desc: 'Documento de oferta de alquiler para inquilinos.' },
