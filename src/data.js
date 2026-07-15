@@ -50,6 +50,15 @@ export const CRM = [
     estilo: 'vacaciones',
     icono: '🌴',
   },
+  {
+    id: 'fotografia',
+    etiqueta: 'Agenda · Reportajes',
+    nombre: 'CALENDARIO DE FOTOGRAFÍA',
+    desc: 'Reserva y consulta los reportajes',
+    url: 'https://contratos-498808.web.app/fotografia.html',
+    estilo: 'foto',
+    icono: '📸',
+  },
 ]
 
 export const PROCESOS_BASE = [
