@@ -82,6 +82,7 @@ export const PROCESOS_BASE = [
 
   // ---------- Generación de negocio ----------
   { cat: 'Generación de negocio', tipo: 'DOC', nombre: 'Contrato Win Win', url: 'https://docs.google.com/document/d/1LMlXH28d0A6HjOCFtEbnw8QSVizfvOns/edit', desc: 'Acuerdo de colaboración Win Win para generación de negocio.' },
+  { cat: 'Generación de negocio', tipo: 'APP', nombre: 'HAMMER · Seguimiento de prospectos', url: 'https://rk-hammer-bueno.vercel.app/', desc: 'Herramienta para el seguimiento de prospectos y su conversión en negocio.' },
 
   { cat: 'Calculadoras', tipo: 'APP', nombre: 'Calculadora de gastos · Comprador', url: 'https://calculadora-de-gastos-theta.vercel.app/', desc: 'Calcula los gastos de compra del cliente (ITP/AJD, notaría, registro, gestoría…).' },
   { cat: 'Calculadoras', tipo: 'APP', nombre: 'Calculadora de rentabilidad', url: 'https://calculadora-rentabilidad-one.vercel.app/', desc: 'Rentabilidad de una inversión inmobiliaria para el cliente inversor.' },
