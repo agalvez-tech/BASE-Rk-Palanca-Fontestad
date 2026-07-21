@@ -253,6 +253,15 @@ body{
 .lz-foto .icono{background:rgba(255,255,255,.1);color:#ffc586;border:1px solid rgba(255,255,255,.16);font-size:24px}
 .lz-foto .desc{color:rgba(255,255,255,.7)}
 .lz-foto .ir{background:rgba(255,255,255,.12);color:#fff}
+/* CONTROL DE LLAVES */
+.lz-llaves{background:var(--blanco);color:var(--tinta);border:1.5px solid var(--linea);box-shadow:0 14px 36px rgba(22,19,15,.08)}
+.lz-llaves::before{content:'';position:absolute;left:-40px;bottom:-50px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle at 40% 40%, #ffe6c4, var(--naranja-suave) 70%, transparent 78%);transition:transform .35s ease}
+.lz-llaves:hover{box-shadow:0 22px 50px rgba(207,115,27,.22);border-color:#f0d9bd}
+.lz-llaves:hover::before{transform:scale(1.18)}
+.lz-llaves .etiqueta{color:var(--naranja);opacity:1}
+.lz-llaves .icono{background:var(--naranja-suave);color:var(--naranja);font-size:24px}
+.lz-llaves .desc{color:var(--gris)}
+.lz-llaves .ir{background:var(--naranja);color:#fff}
 
 /* =============== MARQUEE =============== */
 .marquee{

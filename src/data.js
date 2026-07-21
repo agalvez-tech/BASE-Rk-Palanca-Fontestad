@@ -59,6 +59,15 @@ export const CRM = [
     estilo: 'foto',
     icono: '📸',
   },
+  {
+    id: 'llaves',
+    etiqueta: 'Inmuebles · Control',
+    nombre: 'CONTROL DE LLAVES',
+    desc: 'Registro de llaves de los inmuebles',
+    url: 'https://llaves-xi.vercel.app/',
+    estilo: 'llaves',
+    icono: '🔑',
+  },
 ]
 
 export const PROCESOS_BASE = [
