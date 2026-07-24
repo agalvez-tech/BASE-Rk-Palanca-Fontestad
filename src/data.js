@@ -73,7 +73,7 @@ export const CRM = [
 export const PROCESOS_BASE = [
   // ---------- Captación ----------
   { cat: 'Captación', tipo: 'APP', nombre: 'Alta de viviendas', url: 'https://captacion2.vercel.app/', desc: 'Proceso completo de alta de un inmueble nuevo en cartera.' },
-  { cat: 'Captación', tipo: 'DOC', nombre: 'Exclusiva vendedor', url: 'https://docs.google.com/document/d/1yYGnmdEpcgCSAfO0UFc54XKBycbTSlO4w5oX-_LU1Hw/edit?tab=t.0#heading=h.gjdgxs', desc: 'Contrato de encargo en exclusiva con el propietario vendedor.' },
+  { cat: 'Captación', tipo: 'APP', nombre: 'Contrato de mediación inmobiliaria · Exclusiva compartida', url: 'https://contratos-498808-form.web.app/', desc: 'Genera el contrato de mediación en exclusiva compartida con el propietario.' },
   { cat: 'Captación', tipo: 'DOC', nombre: 'Aceptación del arrendatario · visitas y venta', url: 'https://docs.google.com/document/d/1hrBHr7lgJRMJi4slAyYFYd2_ciNV7KCs/edit#heading=h.gjdgxs', desc: 'Autorización del inquilino actual para realizar visitas y venta del inmueble.' },
   { cat: 'Captación', tipo: 'PDF', nombre: 'Coste de acciones de marketing', url: 'https://drive.google.com/file/d/1-LyddzGJl3Rd9tvR_7mRosicRBXbHEx-/view', desc: 'Lo que invertimos en vender una vivienda: coste de cada acción y contactos que genera. Argumentario para el propietario.' },
   { cat: 'Captación', tipo: 'PDF', nombre: 'Proceso de venta en 12 pasos', url: 'https://drive.google.com/file/d/1ZbViJoXViddGvDOfs9frZgvqNohpazS2/view', desc: 'Cómo vendemos su vivienda: el recorrido completo de Hoy a la notaría en 12 pasos.' },
