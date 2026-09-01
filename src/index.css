@@ -404,54 +404,6 @@ footer{padding:34px 28px 42px;text-align:center}
 .firma{font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gris-claro)}
 .firma b{color:var(--naranja)}
 
-/* =============== MODAL =============== */
-.modal-fondo{
-  position:fixed;inset:0;z-index:100;
-  background:rgba(22,19,15,.45);backdrop-filter:blur(8px);
-  display:none;align-items:center;justify-content:center;padding:20px;
-}
-.modal-fondo.abierto{display:flex}
-.modal{
-  width:100%;max-width:490px;
-  background:var(--blanco);
-  border-radius:24px;
-  padding:34px;
-  animation:alzar .3s cubic-bezier(.2,.7,.2,1);
-  max-height:90vh;overflow-y:auto;
-  box-shadow:0 30px 80px rgba(22,19,15,.3);
-}
-.modal h2{font-size:20px;font-weight:800;letter-spacing:-.01em}
-.modal .nota{font-size:12.5px;font-weight:400;color:var(--gris);margin:6px 0 24px;line-height:1.55}
-.campo{margin-bottom:16px}
-.campo label{display:block;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gris);margin-bottom:8px}
-.campo input,.campo select,.campo textarea{
-  width:100%;font-family:inherit;font-size:14.5px;font-weight:500;color:var(--tinta);
-  background:var(--papel);border:1.5px solid var(--linea);border-radius:12px;
-  padding:13px 15px;outline:none;
-  transition:border-color .15s ease,box-shadow .15s ease;
-}
-.campo textarea{resize:vertical;min-height:66px;font-weight:400}
-.campo input:focus,.campo select:focus,.campo textarea:focus{border-color:var(--naranja);box-shadow:0 0 0 4px rgba(207,115,27,.12)}
-.campo input::placeholder,.campo textarea::placeholder{color:var(--gris-claro);font-weight:400}
-.campo select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236f675c' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
-.modal-acciones{display:flex;gap:10px;justify-content:flex-end;margin-top:26px}
-.btn-sec{
-  font-family:inherit;font-size:13px;font-weight:600;color:var(--gris);
-  background:none;border:1.5px solid var(--linea);border-radius:999px;
-  padding:12px 22px;cursor:pointer;transition:all .15s ease;
-}
-.btn-sec:hover{color:var(--tinta);border-color:var(--gris-claro)}
-.error-form{display:none;color:#c2371f;font-size:12.5px;font-weight:600;margin-top:14px}
-
-.toast{
-  position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(90px);
-  background:var(--tinta);color:#fff;
-  font-size:13px;font-weight:600;border-radius:999px;padding:13px 24px;
-  z-index:200;transition:transform .35s cubic-bezier(.2,.7,.2,1);pointer-events:none;
-  box-shadow:0 12px 32px rgba(22,19,15,.3);
-}
-.toast.visible{transform:translateX(-50%) translateY(0)}
-
 @media (max-width:980px){
   .crm-grid{grid-template-columns:repeat(2,1fr)}
 }

@@ -35,13 +35,11 @@ git push -u origin main
 
 Cada `git push` a `main` redespliega automáticamente.
 
-## Cómo se guardan los procesos añadidos
+## Cómo se añaden procesos
 
-Los procesos que el equipo añade con el botón **"Añadir proceso"** se guardan en el **localStorage del navegador** de cada persona. Es decir: cada agente ve los procesos base (los 34 definidos en `src/data.js`) más los que él mismo haya añadido en su navegador.
+Todos los procesos que ve el equipo están definidos en `src/data.js` (array `PROCESOS_BASE`). Para añadir uno nuevo para todo el equipo: edita ese archivo, añade la entrada y haz push — Vercel publicará el cambio automáticamente.
 
-**Para añadir un proceso para TODO el equipo de forma permanente**, edita `src/data.js`, añade el proceso al array `PROCESOS_BASE` y haz push — Vercel publicará el cambio automáticamente.
-
-> Si en el futuro queréis que los procesos añadidos desde la web se compartan entre todos al instante, se puede conectar a Vercel KV o a un Cloudflare Worker (como el del informe de valoración) en una tarde.
+> Si en el futuro queréis que alguien pueda añadir un proceso desde la propia web sin tocar código, se puede conectar a Vercel KV o a un Cloudflare Worker (como el del informe de valoración) en una tarde.
 
 ## Estructura
 
