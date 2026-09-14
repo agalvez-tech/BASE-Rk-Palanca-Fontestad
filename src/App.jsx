@@ -8,6 +8,7 @@ const SLACK_ALMUDENA = 'https://inmobiliaria-palanca.slack.com/team/U0A7KM0FREX'
 
 const FAVORITOS_KEY = 'base:favoritos'
 const RECIENTES_KEY = 'base:recientes'
+const USOS_KEY = 'base:usos'
 const MAX_RECIENTES = 6
 
 function leerJSON(key, porDefecto) {
@@ -221,6 +222,7 @@ export default function App() {
   const [topbarPegada, setTopbarPegada] = useState(false)
   const [favoritos, setFavoritos] = useState(() => new Set(leerJSON(FAVORITOS_KEY, [])))
   const [recientes, setRecientes] = useState(() => leerJSON(RECIENTES_KEY, []))
+  const [usos, setUsos] = useState(() => leerJSON(USOS_KEY, {}))
   const [paletaAbierta, setPaletaAbierta] = useState(false)
 
   const alternarFavorito = (id) => {
@@ -237,6 +239,11 @@ export default function App() {
     setRecientes((prev) => {
       const next = [id, ...prev.filter((x) => x !== id)].slice(0, MAX_RECIENTES)
       guardarJSON(RECIENTES_KEY, next)
+      return next
+    })
+    setUsos((prev) => {
+      const next = { ...prev, [id]: (prev[id] || 0) + 1 }
+      guardarJSON(USOS_KEY, next)
       return next
     })
   }
@@ -276,8 +283,15 @@ export default function App() {
   const secciones = useMemo(
     () => CATEGORIAS_BASE
       .filter((c) => filtrados.some((p) => p.cat === c))
-      .map((c, idx) => ({ cat: c, idx, items: filtrados.filter((p) => p.cat === c) })),
-    [filtrados],
+      .map((c, idx) => ({
+        cat: c,
+        idx,
+        items: filtrados
+          .filter((p) => p.cat === c)
+          .slice()
+          .sort((a, b) => (usos[b.id] || 0) - (usos[a.id] || 0)),
+      })),
+    [filtrados, usos],
   )
 
   useRevelar([secciones])
