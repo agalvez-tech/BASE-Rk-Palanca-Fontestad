@@ -112,6 +112,108 @@ function TarjetaProceso({ p, favorito, onFavorito, onAbrir }) {
   )
 }
 
+const LupaIcono = () => (
+  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="9" cy="9" r="6" /><path d="M14 14l4 4" strokeLinecap="round" /></svg>
+)
+
+function textoBusqueda(p) {
+  return `${p.nombre} ${p.desc || ''} ${p.cat} ${p.tipo}`.toLowerCase()
+}
+
+function Paleta({ abierta, onCerrar, todos, favoritos, recientes, onVerTodos, onAbrir }) {
+  const [texto, setTexto] = useState('')
+  const [indice, setIndice] = useState(0)
+  const inputRef = useRef(null)
+
+  useEffect(() => {
+    if (!abierta) return
+    setTexto('')
+    setIndice(0)
+    const id = requestAnimationFrame(() => inputRef.current?.focus())
+    return () => cancelAnimationFrame(id)
+  }, [abierta])
+
+  const t = texto.trim().toLowerCase()
+
+  const coincidencias = useMemo(
+    () => (t ? todos.filter((p) => textoBusqueda(p).includes(t)) : []),
+    [todos, t],
+  )
+
+  const resultados = useMemo(() => {
+    if (t) return coincidencias.slice(0, 8)
+    const favs = todos.filter((p) => favoritos.has(p.id))
+    const rec = recientes.map((id) => todos.find((p) => p.id === id)).filter((p) => p && !favoritos.has(p.id))
+    return [...favs, ...rec].slice(0, 8)
+  }, [t, coincidencias, todos, favoritos, recientes])
+
+  if (!abierta) return null
+
+  const abrirResultado = (p) => {
+    onAbrir(p.id)
+    window.open(p.url, '_blank', 'noopener,noreferrer')
+    onCerrar()
+  }
+
+  const onKeyDown = (e) => {
+    if (e.key === 'Escape') { onCerrar(); return }
+    if (e.key === 'ArrowDown') { e.preventDefault(); setIndice((i) => Math.min(i + 1, resultados.length - 1)) }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); setIndice((i) => Math.max(i - 1, 0)) }
+    else if (e.key === 'Enter') { e.preventDefault(); if (resultados[indice]) abrirResultado(resultados[indice]) }
+  }
+
+  return (
+    <div className="paleta-fondo" onMouseDown={onCerrar}>
+      <div className="paleta" onMouseDown={(e) => e.stopPropagation()}>
+        <div className="paleta-input">
+          <LupaIcono />
+          <input
+            ref={inputRef}
+            value={texto}
+            onChange={(e) => { setTexto(e.target.value); setIndice(0) }}
+            onKeyDown={onKeyDown}
+            placeholder="Buscar un proceso, formulario o herramienta…"
+            autoComplete="off"
+          />
+          <button type="button" className="paleta-cerrar" onClick={onCerrar}>Esc</button>
+        </div>
+
+        <div className="paleta-lista">
+          {!t && resultados.length > 0 && <div className="paleta-grupo">Tus accesos rápidos</div>}
+          {t && resultados.length === 0 && (
+            <div className="paleta-vacio">Sin resultados para «{texto}».</div>
+          )}
+          {!t && resultados.length === 0 && (
+            <div className="paleta-vacio">Escribe para buscar entre los {todos.length} procesos de la BASE.</div>
+          )}
+          {resultados.map((p, i) => (
+            <button
+              type="button"
+              key={p.id}
+              className={`paleta-item${i === indice ? ' activo' : ''}`}
+              onMouseEnter={() => setIndice(i)}
+              onClick={() => abrirResultado(p)}
+            >
+              <IconoTipo tipo={p.tipo} />
+              <span className="paleta-item-texto">
+                <span className="paleta-item-nombre">{p.nombre}</span>
+                <span className="paleta-item-cat">{p.cat}</span>
+              </span>
+              {favoritos.has(p.id) && <span className="paleta-fav">★</span>}
+            </button>
+          ))}
+        </div>
+
+        {t && coincidencias.length > resultados.length && (
+          <button type="button" className="paleta-vertodos" onClick={() => onVerTodos(texto)}>
+            Ver los {coincidencias.length} resultados para «{texto}»
+          </button>
+        )}
+      </div>
+    </div>
+  )
+}
+
 /* ---------- App ---------- */
 export default function App() {
   const [filtroCat, setFiltroCat] = useState('TODOS')
@@ -119,7 +221,7 @@ export default function App() {
   const [topbarPegada, setTopbarPegada] = useState(false)
   const [favoritos, setFavoritos] = useState(() => new Set(leerJSON(FAVORITOS_KEY, [])))
   const [recientes, setRecientes] = useState(() => leerJSON(RECIENTES_KEY, []))
-  const buscadorRef = useRef(null)
+  const [paletaAbierta, setPaletaAbierta] = useState(false)
 
   const alternarFavorito = (id) => {
     setFavoritos((prev) => {
@@ -184,9 +286,10 @@ export default function App() {
     const onScroll = () => setTopbarPegada(window.scrollY > 20)
     window.addEventListener('scroll', onScroll, { passive: true })
     const onKey = (e) => {
-      if (e.key === '/' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+      const enCampo = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)
+      if ((e.key === '/' && !enCampo) || ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k')) {
         e.preventDefault()
-        buscadorRef.current?.focus()
+        setPaletaAbierta(true)
       }
     }
     document.addEventListener('keydown', onKey)
@@ -195,6 +298,18 @@ export default function App() {
       document.removeEventListener('keydown', onKey)
     }
   }, [])
+
+  useEffect(() => {
+    document.body.style.overflow = paletaAbierta ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [paletaAbierta])
+
+  const verTodosResultados = (texto) => {
+    setFiltroCat('TODOS')
+    setFiltroTexto(texto)
+    setPaletaAbierta(false)
+    requestAnimationFrame(() => document.querySelector('.cats-sticky')?.scrollIntoView({ behavior: 'smooth' }))
+  }
 
   return (
     <>
@@ -223,19 +338,35 @@ export default function App() {
       </section>
 
       <div className="buscador-wrap">
-        <div className="buscador">
-          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="9" cy="9" r="6" /><path d="M14 14l4 4" strokeLinecap="round" /></svg>
-          <input
-            ref={buscadorRef}
-            type="text"
-            placeholder="Buscar un proceso, formulario o herramienta…"
-            autoComplete="off"
-            value={filtroTexto}
-            onChange={(e) => setFiltroTexto(e.target.value)}
-          />
-          <span className="atajo">/</span>
-        </div>
+        <button type="button" className="buscador" onClick={() => setPaletaAbierta(true)}>
+          <LupaIcono />
+          <span className={`buscador-texto${filtroTexto ? ' activo' : ''}`}>
+            {filtroTexto ? `Resultados para «${filtroTexto}»` : 'Buscar un proceso, formulario o herramienta…'}
+          </span>
+          {filtroTexto ? (
+            <span
+              className="atajo atajo-limpiar"
+              role="button"
+              tabIndex={0}
+              onClick={(e) => { e.stopPropagation(); setFiltroTexto('') }}
+            >
+              ✕
+            </span>
+          ) : (
+            <span className="atajo">/</span>
+          )}
+        </button>
       </div>
+
+      <Paleta
+        abierta={paletaAbierta}
+        onCerrar={() => setPaletaAbierta(false)}
+        todos={todos}
+        favoritos={favoritos}
+        recientes={recientes}
+        onVerTodos={verTodosResultados}
+        onAbrir={registrarReciente}
+      />
 
       <section className="crm-wrap">
         <div className="crm-titulo">Tus paneles de trabajo</div>

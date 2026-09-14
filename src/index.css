@@ -146,7 +146,8 @@ body{
   animation:alzar .9s cubic-bezier(.2,.7,.2,1) .65s both;
 }
 .buscador{
-  display:flex;align-items:center;
+  display:flex;align-items:center;width:100%;
+  font-family:inherit;text-align:left;cursor:pointer;
   background:var(--blanco);
   border:1px solid var(--linea);
   border-radius:999px;
@@ -154,18 +155,64 @@ body{
   box-shadow:0 10px 36px rgba(22,19,15,.14);
   transition:box-shadow .25s ease,border-color .25s ease;
 }
-.buscador:focus-within{border-color:var(--naranja);box-shadow:0 12px 44px rgba(207,115,27,.22)}
+.buscador:hover,.buscador:focus-visible{border-color:var(--naranja);box-shadow:0 12px 44px rgba(207,115,27,.22)}
 .buscador svg{width:19px;height:19px;color:var(--gris-claro);flex:none}
-.buscador input{
-  flex:1;background:none;border:none;outline:none;
-  font-family:inherit;font-size:15.5px;font-weight:500;color:var(--tinta);
-  padding:14px 16px;
+.buscador-texto{
+  flex:1;font-size:15.5px;font-weight:400;color:var(--gris-claro);
+  padding:14px 16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
 }
-.buscador input::placeholder{color:var(--gris-claro);font-weight:400}
+.buscador-texto.activo{color:var(--tinta);font-weight:500}
 .buscador .atajo{
   flex:none;font-size:11px;font-weight:700;color:var(--gris);
   background:var(--arena);border-radius:10px;padding:8px 12px;margin-right:6px;
 }
+.buscador .atajo-limpiar{cursor:pointer;transition:color .15s ease,background .15s ease}
+.buscador .atajo-limpiar:hover{color:#fff;background:var(--naranja)}
+
+/* =============== PALETA DE BÚSQUEDA =============== */
+.paleta-fondo{
+  position:fixed;inset:0;z-index:100;
+  background:rgba(14,12,18,.5);backdrop-filter:blur(6px);
+  display:flex;align-items:flex-start;justify-content:center;
+  padding:12vh 20px 20px;
+}
+.paleta{
+  width:100%;max-width:620px;
+  background:var(--blanco);border-radius:20px;
+  box-shadow:0 30px 80px rgba(22,19,15,.35);
+  overflow:hidden;
+  animation:alzar .22s cubic-bezier(.2,.7,.2,1);
+}
+.paleta-input{display:flex;align-items:center;gap:12px;padding:18px 20px;border-bottom:1px solid var(--linea)}
+.paleta-input svg{width:19px;height:19px;color:var(--gris-claro);flex:none}
+.paleta-input input{
+  flex:1;background:none;border:none;outline:none;
+  font-family:inherit;font-size:16px;font-weight:500;color:var(--tinta);
+}
+.paleta-input input::placeholder{color:var(--gris-claro);font-weight:400}
+.paleta-cerrar{
+  flex:none;font-family:inherit;font-size:11px;font-weight:700;color:var(--gris);
+  background:var(--arena);border:none;border-radius:8px;padding:6px 10px;cursor:pointer;
+}
+.paleta-lista{max-height:56vh;overflow-y:auto;padding:10px}
+.paleta-grupo{padding:10px 12px 6px;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gris-claro)}
+.paleta-vacio{padding:26px 12px;text-align:center;font-size:13.5px;color:var(--gris)}
+.paleta-item{
+  width:100%;display:flex;align-items:center;gap:12px;
+  font-family:inherit;text-align:left;background:none;border:none;border-radius:12px;
+  padding:11px 12px;cursor:pointer;color:var(--naranja);
+}
+.paleta-item.activo{background:var(--arena)}
+.paleta-item-texto{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0}
+.paleta-item-nombre{font-size:14px;font-weight:600;color:var(--tinta);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.paleta-item-cat{font-size:11.5px;font-weight:400;color:var(--gris)}
+.paleta-fav{flex:none;color:var(--naranja);font-size:14px}
+.paleta-vertodos{
+  width:100%;font-family:inherit;font-size:13px;font-weight:700;color:var(--naranja);
+  background:var(--naranja-suave);border:none;border-top:1px solid var(--linea);
+  padding:14px;cursor:pointer;
+}
+.paleta-vertodos:hover{background:#f5dcb8}
 
 /* =============== LANZADERAS CRM =============== */
 .crm-wrap{max-width:1180px;margin:34px auto 0;padding:0 28px}
