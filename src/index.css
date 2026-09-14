@@ -348,10 +348,12 @@ main{max-width:1180px;margin:0 auto;padding:14px 28px 70px}
 .card:focus-visible{outline:3px solid var(--naranja);outline-offset:2px}
 .card .fila{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}
 .badge{
+  display:inline-flex;align-items:center;gap:5px;
   font-size:9.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
   color:var(--naranja);background:var(--naranja-suave);
-  border-radius:7px;padding:5px 9px;
+  border-radius:7px;padding:5px 9px 5px 8px;
 }
+.icono-tipo{flex:none}
 .fila-acciones{display:flex;align-items:center;gap:8px}
 .fav-btn{
   width:32px;height:32px;border-radius:50%;border:none;

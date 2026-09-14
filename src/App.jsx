@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo, useRef } from 'react'
 import { CATEGORIAS_BASE, PROCESOS_BASE, CRM } from './data.js'
 import Astronauta from './Astronauta.jsx'
+import IconoTipo from './IconoTipo.jsx'
 
 const VALORES = ['Fuerza', 'Compromiso', 'Unión', 'Crecimiento', 'Inolvidable', 'Tradición + Innovación']
 const SLACK_ALMUDENA = 'https://inmobiliaria-palanca.slack.com/team/U0A7KM0FREX'
@@ -91,7 +92,7 @@ function TarjetaProceso({ p, favorito, onFavorito, onAbrir }) {
   return (
     <a className="card" href={p.url} target="_blank" rel="noopener noreferrer" onClick={() => onAbrir(p.id)}>
       <div className="fila">
-        <span className="badge">{p.tipo}</span>
+        <span className="badge"><IconoTipo tipo={p.tipo} />{p.tipo}</span>
         <span className="fila-acciones">
           <button
             type="button"
