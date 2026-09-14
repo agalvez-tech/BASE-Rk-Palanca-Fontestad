@@ -5,6 +5,27 @@ import Astronauta from './Astronauta.jsx'
 const VALORES = ['Fuerza', 'Compromiso', 'Unión', 'Crecimiento', 'Inolvidable', 'Tradición + Innovación']
 const SLACK_ALMUDENA = 'https://inmobiliaria-palanca.slack.com/team/U0A7KM0FREX'
 
+const FAVORITOS_KEY = 'base:favoritos'
+const RECIENTES_KEY = 'base:recientes'
+const MAX_RECIENTES = 6
+
+function leerJSON(key, porDefecto) {
+  try {
+    const guardado = localStorage.getItem(key)
+    return guardado ? JSON.parse(guardado) : porDefecto
+  } catch {
+    return porDefecto
+  }
+}
+
+function guardarJSON(key, valor) {
+  try {
+    localStorage.setItem(key, JSON.stringify(valor))
+  } catch {
+    // localStorage no disponible (modo privado, etc.) — se pierde la persistencia, no la funcionalidad
+  }
+}
+
 /* ---------- presentación ---------- */
 function useRevelar(deps = []) {
   useEffect(() => {
@@ -66,12 +87,56 @@ const FlechaIcono = () => (
   </svg>
 )
 
+function TarjetaProceso({ p, favorito, onFavorito, onAbrir }) {
+  return (
+    <a className="card" href={p.url} target="_blank" rel="noopener noreferrer" onClick={() => onAbrir(p.id)}>
+      <div className="fila">
+        <span className="badge">{p.tipo}</span>
+        <span className="fila-acciones">
+          <button
+            type="button"
+            className={`fav-btn${favorito ? ' activo' : ''}`}
+            aria-label={favorito ? 'Quitar de favoritos' : 'Añadir a favoritos'}
+            aria-pressed={favorito}
+            onClick={(e) => { e.preventDefault(); e.stopPropagation(); onFavorito(p.id) }}
+          >
+            {favorito ? '★' : '☆'}
+          </button>
+          <span className="flecha"><FlechaIcono /></span>
+        </span>
+      </div>
+      <h3>{p.nombre}</h3>
+      {p.desc && <p>{p.desc}</p>}
+    </a>
+  )
+}
+
 /* ---------- App ---------- */
 export default function App() {
   const [filtroCat, setFiltroCat] = useState('TODOS')
   const [filtroTexto, setFiltroTexto] = useState('')
   const [topbarPegada, setTopbarPegada] = useState(false)
+  const [favoritos, setFavoritos] = useState(() => new Set(leerJSON(FAVORITOS_KEY, [])))
+  const [recientes, setRecientes] = useState(() => leerJSON(RECIENTES_KEY, []))
   const buscadorRef = useRef(null)
+
+  const alternarFavorito = (id) => {
+    setFavoritos((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      guardarJSON(FAVORITOS_KEY, [...next])
+      return next
+    })
+  }
+
+  const registrarReciente = (id) => {
+    setRecientes((prev) => {
+      const next = [id, ...prev.filter((x) => x !== id)].slice(0, MAX_RECIENTES)
+      guardarJSON(RECIENTES_KEY, next)
+      return next
+    })
+  }
 
   const estrellas = useMemo(() => Array.from({ length: 70 }, (_, i) => ({
     id: i,
@@ -84,9 +149,17 @@ export default function App() {
   })), [])
 
   const todos = useMemo(
-    () => PROCESOS_BASE.map((p, i) => ({ ...p, id: 'base-' + i })),
+    () => PROCESOS_BASE.map((p) => ({ ...p, id: p.url })),
     [],
   )
+
+  const accesosRapidos = useMemo(() => {
+    const favs = todos.filter((p) => favoritos.has(p.id))
+    const recientesItems = recientes
+      .map((id) => todos.find((p) => p.id === id))
+      .filter((p) => p && !favoritos.has(p.id))
+    return { favs, recientesItems }
+  }, [todos, favoritos, recientes])
 
   const filtrados = useMemo(() => {
     const t = filtroTexto.trim().toLowerCase()
@@ -180,6 +253,31 @@ export default function App() {
         </div>
       </section>
 
+      {(accesosRapidos.favs.length > 0 || accesosRapidos.recientesItems.length > 0) && (
+        <section className="crm-wrap">
+          {accesosRapidos.favs.length > 0 && (
+            <>
+              <div className="crm-titulo">⭐ Tus favoritos</div>
+              <div className="grid" style={{ marginBottom: accesosRapidos.recientesItems.length > 0 ? 34 : 0 }}>
+                {accesosRapidos.favs.map((p) => (
+                  <TarjetaProceso key={p.id} p={p} favorito onFavorito={alternarFavorito} onAbrir={registrarReciente} />
+                ))}
+              </div>
+            </>
+          )}
+          {accesosRapidos.recientesItems.length > 0 && (
+            <>
+              <div className="crm-titulo">Recientes</div>
+              <div className="grid">
+                {accesosRapidos.recientesItems.map((p) => (
+                  <TarjetaProceso key={p.id} p={p} favorito={false} onFavorito={alternarFavorito} onAbrir={registrarReciente} />
+                ))}
+              </div>
+            </>
+          )}
+        </section>
+      )}
+
       <div className="marquee" aria-hidden="true">
         <div className="cinta">
           {Array.from({ length: 6 }).map((_, r) => VALORES.map((v, i) => (
@@ -227,14 +325,13 @@ export default function App() {
             </div>
             <div className="grid">
               {s.items.map((p) => (
-                <a className="card" key={p.id} href={p.url} target="_blank" rel="noopener noreferrer">
-                  <div className="fila">
-                    <span className="badge">{p.tipo}</span>
-                    <span className="flecha"><FlechaIcono /></span>
-                  </div>
-                  <h3>{p.nombre}</h3>
-                  {p.desc && <p>{p.desc}</p>}
-                </a>
+                <TarjetaProceso
+                  key={p.id}
+                  p={p}
+                  favorito={favoritos.has(p.id)}
+                  onFavorito={alternarFavorito}
+                  onAbrir={registrarReciente}
+                />
               ))}
             </div>
           </section>

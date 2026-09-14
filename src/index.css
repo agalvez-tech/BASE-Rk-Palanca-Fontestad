@@ -352,6 +352,18 @@ main{max-width:1180px;margin:0 auto;padding:14px 28px 70px}
   color:var(--naranja);background:var(--naranja-suave);
   border-radius:7px;padding:5px 9px;
 }
+.fila-acciones{display:flex;align-items:center;gap:8px}
+.fav-btn{
+  width:32px;height:32px;border-radius:50%;border:none;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--arena);color:var(--gris-claro);
+  font-size:16px;line-height:1;cursor:pointer;
+  opacity:0;transition:all .18s ease;
+}
+.card:hover .fav-btn,.fav-btn.activo,.fav-btn:focus-visible{opacity:1}
+.fav-btn:hover{color:var(--naranja)}
+.fav-btn.activo{color:var(--naranja);background:var(--naranja-suave)}
+.fav-btn:focus-visible{outline:3px solid var(--naranja);outline-offset:2px}
 .card .flecha{
   width:32px;height:32px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
@@ -361,16 +373,6 @@ main{max-width:1180px;margin:0 auto;padding:14px 28px 70px}
 .card:hover .flecha{background:var(--naranja);color:#fff;transform:rotate(45deg)}
 .card h3{font-size:15.5px;font-weight:700;line-height:1.35;letter-spacing:-.005em}
 .card p{margin-top:8px;font-size:12.5px;font-weight:400;line-height:1.6;color:var(--gris)}
-.card .borrar{
-  position:absolute;top:12px;right:12px;
-  width:28px;height:28px;border-radius:9px;
-  display:none;align-items:center;justify-content:center;
-  background:#fff;border:1px solid var(--linea);
-  color:var(--gris);cursor:pointer;font-size:15px;line-height:1;
-  box-shadow:0 2px 8px rgba(22,19,15,.1);
-}
-.card:hover .borrar{display:flex}
-.card .borrar:hover{color:#fff;background:#d6452e;border-color:#d6452e}
 .vacio{
   padding:54px 24px;text-align:center;color:var(--gris);
   font-weight:400;font-size:14.5px;line-height:1.7;
