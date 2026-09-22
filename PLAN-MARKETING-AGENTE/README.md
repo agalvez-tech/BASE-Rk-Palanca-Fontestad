@@ -1,9 +1,13 @@
 # Plan de Marketing del Agente Inmobiliario
 
-App enfocada exclusivamente en el **Plan trimestral** del agente (2-4
-acciones del catálogo M2/M3, incluidas las de colaboradores Win-Win) y un
+App enfocada exclusivamente en el **Plan trimestral** del agente y un
 **repositorio de recursos** reales para consultarlas. Sin registro de
 contactos ni sistema de puntos — se dejaron fuera a propósito.
+
+El catálogo de acciones (M2 = zona/farming geográfico, M3 = esfera de
+influencia/farming referencial, 38 acciones en total) es fiel al contenido
+real de la guía **"Plan Inolvidable"** (ver Recursos), más dos acciones de
+colaboradores Win-Win propias de RK Palanca.
 
 Mismo patrón que BASE/ADITI: **React + Vite** en el front, **Vercel Functions**
 en `api/` y **Postgres (Neon)** como base de datos relacional.
@@ -100,11 +104,17 @@ UPDATE agentes SET es_admin = true WHERE email = 'nuevo-admin@inmobiliariapalanc
 ## Cosas a tener en cuenta
 
 - **Recursos son archivos reales, no enlaces de ejemplo.** Certificado y
-  dossier Win-Win, la guía "Plan Inolvidable", la plantilla "Mi Plan
-  RK-Agente", y las guías de vendedor y de herencias — todos viven en
-  `public/recursos/` (se sacaron de la carpeta de Drive de la agencia) y
-  se sirven como archivos estáticos del propio proyecto — no hace falta
-  ningún servicio de almacenamiento externo.
+  dossier Win-Win, la guía "Plan Inolvidable", y las guías de vendedor y
+  de herencias — todos viven en `public/recursos/` (se sacaron de la
+  carpeta de Drive de la agencia) y se sirven como archivos estáticos del
+  propio proyecto — no hace falta ningún servicio de almacenamiento externo.
+- **El catálogo de acciones se reescribió entero** a partir del texto real
+  de `public/recursos/plan-inolvidable.pdf` (antes tenía 10 acciones
+  genéricas de ejemplo; ahora son 38, fieles a las técnicas descritas en la
+  guía: zona/farming geográfico, círculo de influencia/farming referencial,
+  y acciones condicionadas a un hito como una firma). Las 8 acciones
+  antiguas se desactivaron (`activo = false`) en vez de borrarse, así que
+  cualquier plan que ya las tuviera sigue mostrándolas sin romperse.
 - **Vercel ya está enlazado** al proyecto `plan-marketing-agente`
   (`almudena-s-projects2`), conectado al repo de GitHub
   `agalvez-tech/BASE-Rk-Palanca-Fontestad`.
