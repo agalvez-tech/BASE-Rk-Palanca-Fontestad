@@ -40,7 +40,7 @@ export default conManejoErrores(async function handler(req, res) {
     INSERT INTO agentes (nombre, email, avatar_url)
     VALUES (${payload.name ?? email}, ${email}, ${payload.picture ?? null})
     ON CONFLICT (email) DO UPDATE SET nombre = EXCLUDED.nombre, avatar_url = EXCLUDED.avatar_url
-    RETURNING id, nombre, email, avatar_url
+    RETURNING id, nombre, email, avatar_url, es_admin
   `
 
   const token = await crearSesionToken(agente)

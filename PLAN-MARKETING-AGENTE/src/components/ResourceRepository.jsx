@@ -1,6 +1,6 @@
 import { RECURSOS_DEMO } from '../data/mockData.js'
 
-const ICONO_TIPO = { pdf: '📄', docx: '📝', link: '🔗', imagen: '🖼️' }
+const ICONO_TIPO = { pdf: '📄', docx: '📝', xlsx: '📊', link: '🔗', imagen: '🖼️' }
 
 export default function ResourceRepository({ recursos = RECURSOS_DEMO }) {
   const categorias = [...new Set(recursos.map((r) => r.categoria))]

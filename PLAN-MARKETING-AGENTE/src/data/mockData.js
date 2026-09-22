@@ -41,4 +41,8 @@ export const PLAN_TRIMESTRAL_DEMO = {
 export const RECURSOS_DEMO = [
   { id: 'r1', titulo: 'Certificado Win-Win (15%)', categoria: 'Certificado', tipo: 'docx', url: '/recursos/certificado-win-win-15.docx' },
   { id: 'r2', titulo: 'Dossier Win-Win para profesionales', categoria: 'Dossier', tipo: 'pdf', url: '/recursos/dossier-win-win-profesionales.pdf' },
+  { id: 'r3', titulo: 'Plan Inolvidable (guía completa)', categoria: 'Guía', tipo: 'pdf', url: '/recursos/plan-inolvidable.pdf' },
+  { id: 'r4', titulo: 'Mi Plan RK-Agente (plantilla)', categoria: 'Plantilla', tipo: 'xlsx', url: '/recursos/mi-plan-rk-agente.xlsx' },
+  { id: 'r5', titulo: 'Guía del vendedor 2026', categoria: 'Guía', tipo: 'pdf', url: '/recursos/guia-vendedor-2026.pdf' },
+  { id: 'r6', titulo: 'Guía de herencias 2025', categoria: 'Guía', tipo: 'pdf', url: '/recursos/guia-herencias-2025.pdf' },
 ]

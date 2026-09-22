@@ -10,8 +10,10 @@ en `api/` y **Postgres (Neon)** como base de datos relacional.
 
 Cada agente entra con su cuenta de Google **@inmobiliariapalanca.com** y ve
 solo su propio plan. El primer login crea su perfil automáticamente — no
-hace falta alta manual. Login con Google ya probado y funcionando en
-producción: https://plan-marketing-agente.vercel.app
+hace falta alta manual. Un agente marcado como **administrador** (hoy,
+`agalvez@inmobiliariapalanca.com`) tiene además una pestaña "Agentes" con
+el plan de todos, y puede ver y editar el de cualquiera. Login con Google
+ya probado y funcionando en producción: https://plan-marketing-agente.vercel.app
 
 ## Variables de entorno
 
@@ -54,8 +56,10 @@ npx vercel dev
 │   │   ├── me.js                   # GET: perfil del agente autenticado (401 si no hay sesión)
 │   │   └── logout.js               # POST: borra la cookie de sesión
 │   ├── catalogo.js                # GET catálogo de acciones M2/M3 (global, no por agente)
-│   ├── plan.js                    # GET plan activo · POST añadir acción · DELETE quitar acción
-│   └── recursos.js                # GET repositorio de recursos (global)
+│   ├── plan.js                    # GET/POST/DELETE del plan; admin puede pasar `agente_id` para operar sobre el de otro
+│   ├── recursos.js                # GET repositorio de recursos (global)
+│   └── admin/
+│       └── agentes.js              # GET (solo admin): todos los agentes + resumen de su plan
 ├── src/
 │   ├── App.jsx                     # Shell: pantalla de login / demo / app, según el estado de sesión
 │   ├── api/client.js               # Cliente fetch + comprobarSesion() (distingue demo/sin-sesión/autenticado)
@@ -64,7 +68,8 @@ npx vercel dev
 │   └── components/
 │       ├── Login.jsx                  # Botón "Iniciar sesión con Google" (Google Identity Services)
 │       ├── PlanConfigurator.jsx        # Configurador trimestral: elige 2-4 acciones del catálogo
-│       └── ResourceRepository.jsx      # Repositorio de recursos (certificado y dossier Win-Win)
+│       ├── ResourceRepository.jsx      # Repositorio de recursos
+│       └── AdminAgentes.jsx            # Solo admin: lista de agentes → ver/editar el plan de cualquiera
 ```
 
 ## Cómo funciona el login
@@ -80,12 +85,26 @@ npx vercel dev
    Cada función de `api/` la lee con `protegido()` (`api/_db.js`) y filtra
    todo por ese `agente_id`: un agente nunca ve el plan de otro.
 
+## Administradores
+
+`agentes.es_admin` (columna booleana) marca quién ve la pestaña "Agentes"
+y puede ver/editar el plan de cualquiera. Hoy solo
+`agalvez@inmobiliariapalanca.com` lo es. Para dar de alta a otro
+administrador (necesita haber iniciado sesión al menos una vez, para que
+su perfil ya exista):
+
+```sql
+UPDATE agentes SET es_admin = true WHERE email = 'nuevo-admin@inmobiliariapalanca.com';
+```
+
 ## Cosas a tener en cuenta
 
-- **Recursos son archivos reales, no enlaces de ejemplo.** El certificado
-  Win-Win (`.docx`) y el dossier para profesionales (`.pdf`) viven en
-  `public/recursos/` y se sirven como archivos estáticos del propio
-  proyecto — no hace falta ningún servicio de almacenamiento externo.
+- **Recursos son archivos reales, no enlaces de ejemplo.** Certificado y
+  dossier Win-Win, la guía "Plan Inolvidable", la plantilla "Mi Plan
+  RK-Agente", y las guías de vendedor y de herencias — todos viven en
+  `public/recursos/` (se sacaron de la carpeta de Drive de la agencia) y
+  se sirven como archivos estáticos del propio proyecto — no hace falta
+  ningún servicio de almacenamiento externo.
 - **Vercel ya está enlazado** al proyecto `plan-marketing-agente`
   (`almudena-s-projects2`), conectado al repo de GitHub
   `agalvez-tech/BASE-Rk-Palanca-Fontestad`.

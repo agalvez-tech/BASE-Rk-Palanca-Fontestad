@@ -11,6 +11,8 @@ export default function PlanConfigurator({
   catalogo = ACCIONES_CATALOGO_DEMO,
   onAnadirAccion, // (form) => void — persiste la acción añadida en la API real
   onQuitarAccion, // (id) => void — persiste la baja de la acción en la API real
+  agenteObjetivo, // { nombre } opcional — un admin viendo el plan de otro agente
+  onVolver, // () => void — salir de la vista de admin y volver a "mi plan"
 }) {
   const [acciones, setAcciones] = useState(plan.acciones)
   const [catalogoAbierto, setCatalogoAbierto] = useState(false)
@@ -56,9 +58,18 @@ export default function PlanConfigurator({
 
   return (
     <div style={{ marginTop: 16 }}>
+      {agenteObjetivo && (
+        <div className="banner-admin">
+          Viendo el plan de <strong>{agenteObjetivo.nombre}</strong>
+          <button className="btn-volver-admin" onClick={onVolver}>← Volver a mi plan</button>
+        </div>
+      )}
+
       <div className="card">
         <div className="eyebrow">Trimestre {plan.trimestre} · {plan.anio}</div>
-        <h2 style={{ marginTop: 2 }}>Tus {acciones.length} acciones elegidas</h2>
+        <h2 style={{ marginTop: 2 }}>
+          {agenteObjetivo ? `${acciones.length} acciones elegidas` : `Tus ${acciones.length} acciones elegidas`}
+        </h2>
         <p style={{ fontSize: 12, color: 'var(--gris)', marginTop: -6, marginBottom: 12 }}>
           Elige entre {MIN_ACCIONES} y {MAX_ACCIONES} acciones concretas para el trimestre.
         </p>

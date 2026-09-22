@@ -1,4 +1,4 @@
-import { sql, protegido } from './_db.js'
+import { sql, protegido, esAdmin } from './_db.js'
 
 async function planActivo(agenteId) {
   const [plan] = await sql`
@@ -9,9 +9,21 @@ async function planActivo(agenteId) {
   return plan
 }
 
+// Resuelve de qué agente es el plan sobre el que se opera. Por defecto es
+// el propio agente autenticado; un administrador puede pasar `agente_id`
+// (en la query o en el body) para ver o gestionar el plan de otro agente.
+async function resolverAgenteObjetivo(agenteId, agenteIdSolicitado) {
+  if (!agenteIdSolicitado || agenteIdSolicitado === agenteId) return agenteId
+  if (!(await esAdmin(agenteId))) return null
+  return agenteIdSolicitado
+}
+
 export default protegido(async function handler(req, res, agenteId) {
   if (req.method === 'GET') {
-    const plan = await planActivo(agenteId)
+    const objetivo = await resolverAgenteObjetivo(agenteId, req.query.agente_id)
+    if (!objetivo) return res.status(403).json({ error: 'Solo un administrador puede ver el plan de otro agente' })
+
+    const plan = await planActivo(objetivo)
     if (!plan) {
       // Sin plan todavía: se devuelve un objeto vacío (no null) para que el
       // frontend lo distinga de "no hay respuesta" y no se quede con los
@@ -35,18 +47,20 @@ export default protegido(async function handler(req, res, agenteId) {
   }
 
   if (req.method === 'POST') {
-    const { accion_catalogo_id, dirigido_a, frecuencia, personalizacion } = req.body ?? {}
+    const { accion_catalogo_id, dirigido_a, frecuencia, personalizacion, agente_id } = req.body ?? {}
     if (!accion_catalogo_id || !dirigido_a || !frecuencia) {
       return res.status(400).json({ error: 'Faltan campos obligatorios' })
     }
+    const objetivo = await resolverAgenteObjetivo(agenteId, agente_id)
+    if (!objetivo) return res.status(403).json({ error: 'Solo un administrador puede editar el plan de otro agente' })
 
-    let plan = await planActivo(agenteId)
+    let plan = await planActivo(objetivo)
     if (!plan) {
       const hoy = new Date()
       const trimestre = Math.floor(hoy.getMonth() / 3) + 1
       ;[plan] = await sql`
         INSERT INTO planes_trimestrales (agente_id, trimestre, anio)
-        VALUES (${agenteId}, ${trimestre}, ${hoy.getFullYear()})
+        VALUES (${objetivo}, ${trimestre}, ${hoy.getFullYear()})
         RETURNING id, trimestre, anio
       `
     }
@@ -65,11 +79,14 @@ export default protegido(async function handler(req, res, agenteId) {
   }
 
   if (req.method === 'DELETE') {
-    const { id } = req.query
+    const { id, agente_id } = req.query
     if (!id) return res.status(400).json({ error: 'Falta id' })
+    const objetivo = await resolverAgenteObjetivo(agenteId, agente_id)
+    if (!objetivo) return res.status(403).json({ error: 'Solo un administrador puede editar el plan de otro agente' })
+
     const [borrado] = await sql`
       UPDATE plan_acciones SET activo = false
-      WHERE id = ${id} AND plan_id IN (SELECT id FROM planes_trimestrales WHERE agente_id = ${agenteId})
+      WHERE id = ${id} AND plan_id IN (SELECT id FROM planes_trimestrales WHERE agente_id = ${objetivo})
       RETURNING id
     `
     if (!borrado) return res.status(404).json({ error: 'Acción no encontrada' })

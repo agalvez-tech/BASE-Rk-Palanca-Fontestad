@@ -28,3 +28,18 @@ export function protegido(handler) {
     return handler(req, res, sesion.id)
   })
 }
+
+export async function esAdmin(agenteId) {
+  const [fila] = await sql`SELECT es_admin FROM agentes WHERE id = ${agenteId}`
+  return fila?.es_admin === true
+}
+
+// Como protegido(), pero además exige que el agente autenticado sea
+// administrador (403 si no lo es). Para las rutas que ven/gestionan el
+// plan de todos los agentes.
+export function protegidoAdmin(handler) {
+  return protegido(async (req, res, agenteId) => {
+    if (!(await esAdmin(agenteId))) return res.status(403).json({ error: 'Solo para administradores' })
+    return handler(req, res, agenteId)
+  })
+}

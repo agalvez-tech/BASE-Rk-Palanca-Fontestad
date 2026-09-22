@@ -20,6 +20,7 @@ CREATE TABLE agentes (
   telefono        TEXT,
   oficina         TEXT,
   avatar_url      TEXT,
+  es_admin        BOOLEAN NOT NULL DEFAULT false, -- ve y gestiona el plan de todos los agentes
   created_at      TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 

@@ -17,16 +17,21 @@ async function llamar(url, opciones) {
 export const api = {
   getCatalogo: () => llamar('/api/catalogo'),
 
-  getPlan: () => llamar('/api/plan'),
-  anadirAccionPlan: (payload) =>
+  // `agenteId` es opcional: solo un administrador puede pasar el id de
+  // OTRO agente y ver/editar su plan en vez del propio.
+  getPlan: (agenteId) => llamar(`/api/plan${agenteId ? `?agente_id=${agenteId}` : ''}`),
+  anadirAccionPlan: (payload, agenteId) =>
     llamar('/api/plan', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(agenteId ? { ...payload, agente_id: agenteId } : payload),
     }),
-  quitarAccionPlan: (id) => llamar(`/api/plan?id=${id}`, { method: 'DELETE' }),
+  quitarAccionPlan: (id, agenteId) =>
+    llamar(`/api/plan?id=${id}${agenteId ? `&agente_id=${agenteId}` : ''}`, { method: 'DELETE' }),
 
   getRecursos: () => llamar('/api/recursos'),
+
+  getAgentes: () => llamar('/api/admin/agentes'),
 
   loginConGoogle: (credential) =>
     llamar('/api/auth/google', {

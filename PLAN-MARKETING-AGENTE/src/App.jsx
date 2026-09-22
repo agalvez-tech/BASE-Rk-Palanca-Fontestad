@@ -1,14 +1,10 @@
 import { useEffect, useState } from 'react'
 import PlanConfigurator from './components/PlanConfigurator.jsx'
 import ResourceRepository from './components/ResourceRepository.jsx'
+import AdminAgentes from './components/AdminAgentes.jsx'
 import Login from './components/Login.jsx'
 import { api, comprobarSesion } from './api/client.js'
 import { AGENTE_DEMO, ACCIONES_CATALOGO_DEMO, PLAN_TRIMESTRAL_DEMO, RECURSOS_DEMO } from './data/mockData.js'
-
-const TABS = [
-  { id: 'plan', label: 'Plan' },
-  { id: 'recursos', label: 'Recursos' },
-]
 
 export default function App() {
   const [tab, setTab] = useState('plan')
@@ -25,9 +21,17 @@ export default function App() {
   const [plan, setPlan] = useState(PLAN_TRIMESTRAL_DEMO)
   const [recursos, setRecursos] = useState(RECURSOS_DEMO)
 
+  // Solo para administradores: lista de agentes y, si se selecciona uno,
+  // su plan (en vez del propio).
+  const [agentes, setAgentes] = useState([])
+  const [verAgente, setVerAgente] = useState(null)
+  const [planAgente, setPlanAgente] = useState(null)
+
   useEffect(() => {
     comprobarSesion().then(setSesion)
   }, [])
+
+  const esAdmin = sesion.estado === 'autenticado' && sesion.agente.es_admin
 
   useEffect(() => {
     if (sesion.estado !== 'autenticado' && sesion.estado !== 'sin-backend') return
@@ -36,12 +40,32 @@ export default function App() {
     api.getRecursos().then((r) => r && r.length > 0 && setRecursos(r))
   }, [sesion.estado])
 
+  useEffect(() => {
+    if (!esAdmin) return
+    api.getAgentes().then((r) => r && setAgentes(r))
+  }, [esAdmin])
+
+  useEffect(() => {
+    if (!verAgente) return
+    api.getPlan(verAgente.id).then((r) => r && setPlanAgente({ ...r, acciones: r.acciones }))
+  }, [verAgente])
+
   function anadirAccionPlan(form) {
-    api.anadirAccionPlan(form)
+    api.anadirAccionPlan(form, verAgente?.id)
   }
 
   function quitarAccionPlan(id) {
-    api.quitarAccionPlan(id)
+    api.quitarAccionPlan(id, verAgente?.id)
+  }
+
+  function verPlanDeAgente(a) {
+    setVerAgente(a)
+    setTab('plan')
+  }
+
+  function volverAMiPlan() {
+    setVerAgente(null)
+    setPlanAgente(null)
   }
 
   function cerrarSesion() {
@@ -54,6 +78,12 @@ export default function App() {
   }
 
   const agente = sesion.estado === 'autenticado' ? sesion.agente : AGENTE_DEMO
+
+  const TABS = [
+    { id: 'plan', label: 'Plan' },
+    { id: 'recursos', label: 'Recursos' },
+    ...(esAdmin ? [{ id: 'agentes', label: 'Agentes' }] : []),
+  ]
 
   return (
     <div className="app-shell">
@@ -73,7 +103,17 @@ export default function App() {
       </div>
 
       <div className="app-content">
-        {tab === 'plan' && (
+        {tab === 'plan' && verAgente && (
+          <PlanConfigurator
+            plan={planAgente ?? { trimestre: verAgente.trimestre, anio: verAgente.anio, acciones: [] }}
+            catalogo={catalogo}
+            onAnadirAccion={anadirAccionPlan}
+            onQuitarAccion={quitarAccionPlan}
+            agenteObjetivo={verAgente}
+            onVolver={volverAMiPlan}
+          />
+        )}
+        {tab === 'plan' && !verAgente && (
           <PlanConfigurator
             plan={plan}
             catalogo={catalogo}
@@ -82,6 +122,7 @@ export default function App() {
           />
         )}
         {tab === 'recursos' && <ResourceRepository recursos={recursos} />}
+        {tab === 'agentes' && esAdmin && <AdminAgentes agentes={agentes} onVerPlan={verPlanDeAgente} />}
       </div>
 
       <nav className="app-tabs">

@@ -135,3 +135,30 @@ button{font-family:inherit}
 .recurso-icono{font-size:16px}
 .recurso-titulo{flex:1;font-size:13px;font-weight:600}
 .recurso-flecha{color:var(--gris-claro)}
+
+/* =============== ADMIN =============== */
+.banner-admin{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+  background:var(--naranja-suave);border:1px solid var(--naranja);border-radius:12px;
+  padding:10px 14px;font-size:12.5px;color:var(--naranja-hover);margin-bottom:14px;
+}
+.btn-volver-admin{background:none;border:none;color:var(--naranja-hover);font-weight:700;font-size:12px;cursor:pointer;padding:2px}
+.btn-volver-admin:hover{text-decoration:underline}
+
+.agente-fila{
+  display:flex;align-items:center;gap:10px;width:100%;padding:11px 0;border-bottom:1px solid var(--linea);
+  background:none;border-left:none;border-right:none;border-top:none;cursor:pointer;text-align:left;
+}
+.agente-fila:last-child{border-bottom:none}
+.agente-avatar{width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.agente-avatar-vacio{
+  display:flex;align-items:center;justify-content:center;background:var(--naranja-suave);
+  color:var(--naranja-hover);font-weight:700;font-size:13px;
+}
+.agente-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.agente-nombre{font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:6px}
+.agente-detalle{font-size:11.5px;color:var(--gris)}
+.chip-admin{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;background:var(--tinta);color:#fff;padding:2px 7px;border-radius:999px}
+.chip-plan{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.chip-plan.con-plan{background:var(--verde-suave);color:var(--verde)}
+.chip-plan.sin-plan{background:var(--rojo-suave);color:var(--rojo)}
