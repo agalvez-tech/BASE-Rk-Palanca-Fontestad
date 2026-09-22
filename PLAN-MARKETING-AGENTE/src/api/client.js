@@ -32,6 +32,7 @@ export const api = {
   getRecursos: () => llamar('/api/recursos'),
 
   getAgentes: () => llamar('/api/admin/agentes'),
+  getAccionesEquipo: () => llamar('/api/admin/acciones'),
 
   loginConGoogle: (credential) =>
     llamar('/api/auth/google', {

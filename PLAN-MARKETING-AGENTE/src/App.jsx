@@ -21,9 +21,10 @@ export default function App() {
   const [plan, setPlan] = useState(PLAN_TRIMESTRAL_DEMO)
   const [recursos, setRecursos] = useState(RECURSOS_DEMO)
 
-  // Solo para administradores: lista de agentes y, si se selecciona uno,
-  // su plan (en vez del propio).
+  // Solo para gestores: lista de agentes, todas las acciones del equipo
+  // juntas, y si se selecciona un agente, su plan (en vez del propio).
   const [agentes, setAgentes] = useState([])
+  const [accionesEquipo, setAccionesEquipo] = useState([])
   const [verAgente, setVerAgente] = useState(null)
   const [planAgente, setPlanAgente] = useState(null)
 
@@ -40,9 +41,14 @@ export default function App() {
     api.getRecursos().then((r) => r && r.length > 0 && setRecursos(r))
   }, [sesion.estado])
 
+  function cargarEquipo() {
+    api.getAgentes().then((r) => r && setAgentes(r))
+    api.getAccionesEquipo().then((r) => r && setAccionesEquipo(r))
+  }
+
   useEffect(() => {
     if (!esAdmin) return
-    api.getAgentes().then((r) => r && setAgentes(r))
+    cargarEquipo()
   }, [esAdmin])
 
   useEffect(() => {
@@ -51,11 +57,11 @@ export default function App() {
   }, [verAgente])
 
   function anadirAccionPlan(form) {
-    api.anadirAccionPlan(form, verAgente?.id)
+    api.anadirAccionPlan(form, verAgente?.id).then(() => esAdmin && cargarEquipo())
   }
 
   function quitarAccionPlan(id) {
-    api.quitarAccionPlan(id, verAgente?.id)
+    api.quitarAccionPlan(id, verAgente?.id).then(() => esAdmin && cargarEquipo())
   }
 
   function verPlanDeAgente(a) {
@@ -82,7 +88,7 @@ export default function App() {
   const TABS = [
     { id: 'plan', label: 'Plan' },
     { id: 'recursos', label: 'Recursos' },
-    ...(esAdmin ? [{ id: 'agentes', label: 'Agentes' }] : []),
+    ...(esAdmin ? [{ id: 'agentes', label: 'Equipo' }] : []),
   ]
 
   return (
@@ -122,7 +128,9 @@ export default function App() {
           />
         )}
         {tab === 'recursos' && <ResourceRepository recursos={recursos} />}
-        {tab === 'agentes' && esAdmin && <AdminAgentes agentes={agentes} onVerPlan={verPlanDeAgente} />}
+        {tab === 'agentes' && esAdmin && (
+          <AdminAgentes agentes={agentes} acciones={accionesEquipo} onVerPlan={verPlanDeAgente} />
+        )}
       </div>
 
       <nav className="app-tabs">
