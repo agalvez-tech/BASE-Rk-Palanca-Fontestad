@@ -4,7 +4,7 @@ import { api } from '../api/client.js'
 const DOMINIO = 'inmobiliariapalanca.com'
 const CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID
 
-export default function Login({ onLogin }) {
+export default function Login() {
   const botonRef = useRef(null)
   const [error, setError] = useState(null)
   const [cargando, setCargando] = useState(false)
@@ -19,9 +19,16 @@ export default function Login({ onLogin }) {
         setCargando(true)
         setError(null)
         const agente = await api.loginConGoogle(credential)
+        if (agente) {
+          // Recarga completa en vez de solo actualizar el estado de React:
+          // así la transición a la app es siempre fiable, pase lo que pase
+          // con el ciclo de vida del botón de Google (p. ej. si el usuario
+          // hizo doble clic o el callback tarda en resolver).
+          window.location.reload()
+          return
+        }
         setCargando(false)
-        if (agente) onLogin(agente)
-        else setError(`No se ha podido entrar. Comprueba que usas tu cuenta @${DOMINIO}.`)
+        setError(`No se ha podido entrar. Comprueba que usas tu cuenta @${DOMINIO}.`)
       },
     })
 
@@ -34,7 +41,7 @@ export default function Login({ onLogin }) {
         width: 280,
       })
     }
-  }, [onLogin])
+  }, [])
 
   return (
     <div className="login-pantalla">

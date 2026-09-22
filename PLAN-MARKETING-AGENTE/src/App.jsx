@@ -102,7 +102,7 @@ export default function App() {
 
   if (sesion.estado === 'cargando') return null
   if (sesion.estado === 'sin-sesion') {
-    return <Login onLogin={(agente) => setSesion({ estado: 'autenticado', agente })} />
+    return <Login />
   }
 
   const agente = sesion.estado === 'autenticado' ? sesion.agente : AGENTE_DEMO
