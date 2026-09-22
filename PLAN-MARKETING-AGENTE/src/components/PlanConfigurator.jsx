@@ -118,7 +118,6 @@ export default function PlanConfigurator({
                     <span className="nombre">{a.nombre}</span>
                     <span className="desc">{a.descripcion}</span>
                   </span>
-                  <span className="puntos-pill">+{a.puntos_valor}</span>
                 </button>
               ))}
             </div>

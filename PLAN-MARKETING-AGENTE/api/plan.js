@@ -12,7 +12,18 @@ async function planActivo(agenteId) {
 export default protegido(async function handler(req, res, agenteId) {
   if (req.method === 'GET') {
     const plan = await planActivo(agenteId)
-    if (!plan) return res.status(200).json(null)
+    if (!plan) {
+      // Sin plan todavía: se devuelve un objeto vacío (no null) para que el
+      // frontend lo distinga de "no hay respuesta" y no se quede con los
+      // datos de ejemplo.
+      const hoy = new Date()
+      return res.status(200).json({
+        id: null,
+        trimestre: Math.floor(hoy.getMonth() / 3) + 1,
+        anio: hoy.getFullYear(),
+        acciones: [],
+      })
+    }
     const acciones = await sql`
       SELECT pa.id, pa.accion_catalogo_id, pa.dirigido_a, pa.frecuencia, pa.personalizacion,
              ac.nombre AS accion_nombre, ac.maquina, ac.codigo

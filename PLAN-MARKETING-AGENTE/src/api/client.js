@@ -15,21 +15,6 @@ async function llamar(url, opciones) {
 }
 
 export const api = {
-  getContactos: () => llamar('/api/contactos'),
-  marcarContactado: (id) => llamar(`/api/contactos?id=${id}`, { method: 'PATCH' }),
-  crearContacto: (payload) =>
-    llamar('/api/contactos', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    }),
-  editarContacto: (id, payload) =>
-    llamar(`/api/contactos?id=${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    }),
-
   getCatalogo: () => llamar('/api/catalogo'),
 
   getPlan: () => llamar('/api/plan'),
@@ -40,19 +25,6 @@ export const api = {
       body: JSON.stringify(payload),
     }),
   quitarAccionPlan: (id) => llamar(`/api/plan?id=${id}`, { method: 'DELETE' }),
-
-  getTareas: () => llamar('/api/tareas'),
-  toggleTarea: (id) => llamar(`/api/tareas?id=${id}`, { method: 'PATCH' }),
-
-  getPuntos: () => llamar('/api/puntos'),
-
-  getAutomatizaciones: () => llamar('/api/automatizaciones'),
-  generarTareas: (payload) =>
-    llamar('/api/eventos-hito', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    }),
 
   getRecursos: () => llamar('/api/recursos'),
 
