@@ -31,7 +31,7 @@ export default function AdminAgentes({ agentes, acciones, onVerPlan }) {
               </span>
               <span className={`chip-plan ${a.total_acciones > 0 ? 'con-plan' : 'sin-plan'}`}>
                 {a.total_acciones > 0
-                  ? `${a.total_acciones} ${a.total_acciones === 1 ? 'acción' : 'acciones'} · T${a.trimestre} ${a.anio}`
+                  ? `${a.total_acciones} ${a.total_acciones === 1 ? 'acción' : 'acciones'}`
                   : 'Sin plan'}
               </span>
             </button>
@@ -52,8 +52,9 @@ export default function AdminAgentes({ agentes, acciones, onVerPlan }) {
               {filas.map((f) => (
                 <div className="plan-accion-fila" key={f.id}>
                   <div className="plan-accion-cabecera">
-                    <span className={`badge-maquina ${f.maquina.toLowerCase()}`}>{f.maquina}</span>
-                    <span className="plan-accion-nombre">{f.accion_nombre}</span>
+                    <span className="plan-accion-nombre">
+                      {f.accion_nombre === f.categoria ? f.accion_nombre : `${f.categoria}: ${f.accion_nombre}`}
+                    </span>
                   </div>
                   <div className="plan-accion-detalle"><strong>A quién:</strong> {f.dirigido_a}</div>
                   <div className="plan-accion-detalle"><strong>Frecuencia:</strong> {f.frecuencia}</div>

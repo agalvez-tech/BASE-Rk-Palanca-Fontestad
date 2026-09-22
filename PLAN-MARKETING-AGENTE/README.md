@@ -1,13 +1,15 @@
 # Plan de Marketing del Agente Inmobiliario
 
-App enfocada exclusivamente en el **Plan trimestral** del agente y un
+App enfocada exclusivamente en el **Plan de Marketing** del agente (sin
+fecha ni periodicidad — es un plan continuo, no trimestral) y un
 **repositorio de recursos** reales para consultarlas. Sin registro de
 contactos ni sistema de puntos — se dejaron fuera a propósito.
 
-El catálogo de acciones (M2 = zona/farming geográfico, M3 = esfera de
-influencia/farming referencial, 38 acciones en total) es fiel al contenido
-real de la guía **"Plan Inolvidable"** (ver Recursos), más dos acciones de
-colaboradores Win-Win propias de RK Palanca.
+El catálogo de acciones tiene 7 categorías (las que usa el equipo de RK
+Palanca): Redes sociales, Prospección, Comercio Aliado (firma de acuerdo,
+cara a cara, seguimiento, vídeo de grabación), Win Win (firma de acuerdo,
+cara a cara, seguimiento), Área de Influencia, Eventos, y Descubrir
+vendedores de compradores.
 
 Mismo patrón que BASE/ADITI: **React + Vite** en el front, **Vercel Functions**
 en `api/` y **Postgres (Neon)** como base de datos relacional.
@@ -61,7 +63,7 @@ npx vercel dev
 │   │   ├── google.js               # POST: verifica el login de Google y crea/actualiza el perfil
 │   │   ├── me.js                   # GET: perfil del agente autenticado (401 si no hay sesión)
 │   │   └── logout.js               # POST: borra la cookie de sesión
-│   ├── catalogo.js                # GET catálogo de acciones M2/M3 (global, no por agente)
+│   ├── catalogo.js                # GET catálogo de acciones (global, no por agente)
 │   ├── plan.js                    # GET/POST/DELETE del plan; admin puede pasar `agente_id` para operar sobre el de otro
 │   ├── recursos.js                # GET repositorio de recursos (global)
 │   └── admin/
@@ -74,7 +76,7 @@ npx vercel dev
 │   ├── data/mockData.js             # Datos de ejemplo (mismo formato que las tablas de db/schema.sql)
 │   └── components/
 │       ├── Login.jsx                  # Botón "Iniciar sesión con Google" (Google Identity Services)
-│       ├── PlanConfigurator.jsx        # Configurador trimestral: elige 2-4 acciones del catálogo
+│       ├── PlanConfigurator.jsx        # Añade/quita hasta 4 acciones del catálogo (sin fecha ni periodicidad)
 │       ├── ResourceRepository.jsx      # Repositorio de recursos
 │       └── AdminAgentes.jsx            # Solo gestor: lista de agentes o vista de todas las acciones del equipo
 ```
@@ -111,13 +113,14 @@ UPDATE agentes SET es_admin = true WHERE email = 'nuevo-admin@inmobiliariapalanc
   de herencias — todos viven en `public/recursos/` (se sacaron de la
   carpeta de Drive de la agencia) y se sirven como archivos estáticos del
   propio proyecto — no hace falta ningún servicio de almacenamiento externo.
-- **El catálogo de acciones se reescribió entero** a partir del texto real
-  de `public/recursos/plan-inolvidable.pdf` (antes tenía 10 acciones
-  genéricas de ejemplo; ahora son 38, fieles a las técnicas descritas en la
-  guía: zona/farming geográfico, círculo de influencia/farming referencial,
-  y acciones condicionadas a un hito como una firma). Las 8 acciones
-  antiguas se desactivaron (`activo = false`) en vez de borrarse, así que
-  cualquier plan que ya las tuviera sigue mostrándolas sin romperse.
+- **El catálogo de acciones se reescribió dos veces.** Primero a partir del
+  texto de `plan-inolvidable.pdf` (38 acciones), y después se simplificó a
+  las 7 categorías reales de RK Palanca (12 acciones en total, algunas con
+  varias sub-acciones). Cada versión anterior se desactivó (`activo =
+  false`) en vez de borrarse, así que ningún plan ya guardado se rompe.
+  Varias acciones comparten nombre en categorías distintas (p. ej. "Firma
+  de acuerdo" existe en Comercio Aliado y en Win Win), así que la interfaz
+  siempre muestra "Categoría: Acción" para no confundirlas.
 - **Vercel ya está enlazado** al proyecto `plan-marketing-agente`
   (`almudena-s-projects2`), conectado al repo de GitHub
   `agalvez-tech/BASE-Rk-Palanca-Fontestad`.

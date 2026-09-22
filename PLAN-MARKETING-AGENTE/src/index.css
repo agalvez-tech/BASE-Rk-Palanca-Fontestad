@@ -80,11 +80,6 @@ button{font-family:inherit}
 .btn-primario:hover{background:var(--naranja)}
 .btn-primario:disabled{background:var(--gris-claro);cursor:not-allowed}
 
-/* =============== BADGES M2/M3 =============== */
-.badge-maquina{font-size:10px;font-weight:800;padding:3px 8px;border-radius:7px;flex-shrink:0}
-.badge-maquina.m2{background:var(--ambar-suave);color:var(--ambar)}
-.badge-maquina.m3{background:var(--verde-suave);color:var(--verde)}
-
 /* =============== CONFIGURADOR DEL PLAN =============== */
 .plan-accion-fila{border:1px solid var(--linea);border-radius:12px;padding:12px 14px;margin-bottom:10px}
 .plan-accion-cabecera{display:flex;align-items:center;gap:8px}
@@ -108,6 +103,9 @@ button{font-family:inherit}
 }
 .filtro-maquina button.activo{background:var(--tinta);border-color:var(--tinta);color:#fff}
 
+.catalogo-grupo{margin-bottom:16px}
+.catalogo-grupo:last-of-type{margin-bottom:8px}
+.catalogo-grupo-titulo{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--naranja-hover);margin-bottom:8px}
 .catalogo-lista{display:flex;flex-direction:column;gap:8px}
 .catalogo-item{
   display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--linea);border-radius:12px;

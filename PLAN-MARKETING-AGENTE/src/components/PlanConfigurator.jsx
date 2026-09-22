@@ -1,10 +1,27 @@
 import { useEffect, useState } from 'react'
 import { ACCIONES_CATALOGO_DEMO, PLAN_TRIMESTRAL_DEMO } from '../data/mockData.js'
 
-const MIN_ACCIONES = 2
 const MAX_ACCIONES = 4
 
 const FORM_VACIO = { accion_catalogo_id: '', dirigido_a: '', frecuencia: '', personalizacion: '' }
+
+// Varias categorías comparten nombres de acción (p. ej. "Firma de acuerdo"
+// existe en Comercio Aliado y en Win Win), así que hay que mostrar siempre
+// la categoría para no confundirlas. Cuando el nombre ya es la categoría
+// (p. ej. "Redes sociales") no hace falta repetirlo.
+function etiquetaAccion(accion) {
+  if (!accion) return ''
+  return accion.nombre === accion.categoria ? accion.nombre : `${accion.categoria}: ${accion.nombre}`
+}
+
+function agruparPorCategoria(lista) {
+  const grupos = {}
+  for (const a of lista) {
+    if (!grupos[a.categoria]) grupos[a.categoria] = []
+    grupos[a.categoria].push(a)
+  }
+  return grupos
+}
 
 export default function PlanConfigurator({
   plan = PLAN_TRIMESTRAL_DEMO,
@@ -16,6 +33,7 @@ export default function PlanConfigurator({
 }) {
   const [acciones, setAcciones] = useState(plan.acciones)
   const [catalogoAbierto, setCatalogoAbierto] = useState(false)
+  const [form, setForm] = useState(FORM_VACIO)
 
   // plan llega primero con datos de ejemplo y luego, si /api responde, con
   // el plan real: hay que resincronizar el estado local cuando eso ocurra.
@@ -24,14 +42,9 @@ export default function PlanConfigurator({
   function accionCatalogo(id) {
     return catalogo.find((a) => a.id === id)
   }
-  const [filtroMaquina, setFiltroMaquina] = useState('todas')
-  const [form, setForm] = useState(FORM_VACIO)
-  const [guardado, setGuardado] = useState(false)
 
   const puedeAnadir = acciones.length < MAX_ACCIONES
-  const puedeGuardar = acciones.length >= MIN_ACCIONES && acciones.length <= MAX_ACCIONES
-
-  const catalogoFiltrado = catalogo.filter((a) => filtroMaquina === 'todas' || a.maquina === filtroMaquina)
+  const catalogoAgrupado = agruparPorCategoria(catalogo)
 
   function elegirAccion(accion) {
     setForm({ accion_catalogo_id: accion.id, dirigido_a: '', frecuencia: '', personalizacion: '' })
@@ -43,17 +56,11 @@ export default function PlanConfigurator({
     onAnadirAccion?.(form)
     setForm(FORM_VACIO)
     setCatalogoAbierto(false)
-    setGuardado(false)
   }
 
   function quitarAccion(id) {
     setAcciones((prev) => prev.filter((a) => a.id !== id))
     onQuitarAccion?.(id)
-    setGuardado(false)
-  }
-
-  function guardarPlan() {
-    setGuardado(true)
   }
 
   return (
@@ -66,21 +73,19 @@ export default function PlanConfigurator({
       )}
 
       <div className="card">
-        <div className="eyebrow">Trimestre {plan.trimestre} · {plan.anio}</div>
-        <h2 style={{ marginTop: 2 }}>
-          {agenteObjetivo ? `${acciones.length} acciones elegidas` : `Tus ${acciones.length} acciones elegidas`}
-        </h2>
-        <p style={{ fontSize: 12, color: 'var(--gris)', marginTop: -6, marginBottom: 12 }}>
-          Elige entre {MIN_ACCIONES} y {MAX_ACCIONES} acciones concretas para el trimestre.
-        </p>
+        <h2>{agenteObjetivo ? 'Plan de Marketing' : 'Tu Plan de Marketing'}</h2>
+        {acciones.length === 0 && (
+          <p style={{ fontSize: 12.5, color: 'var(--gris)', marginTop: -6, marginBottom: 12 }}>
+            Todavía no hay acciones elegidas.
+          </p>
+        )}
 
         {acciones.map((pa) => {
           const accion = accionCatalogo(pa.accion_catalogo_id)
           return (
             <div className="plan-accion-fila" key={pa.id}>
               <div className="plan-accion-cabecera">
-                <span className={`badge-maquina ${accion?.maquina?.toLowerCase()}`}>{accion?.maquina}</span>
-                <span className="plan-accion-nombre">{accion?.nombre}</span>
+                <span className="plan-accion-nombre">{etiquetaAccion(accion)}</span>
                 <button className="btn-quitar" onClick={() => quitarAccion(pa.id)} aria-label="Quitar acción">×</button>
               </div>
               <div className="plan-accion-detalle"><strong>A quién:</strong> {pa.dirigido_a}</div>
@@ -98,45 +103,38 @@ export default function PlanConfigurator({
         {!puedeAnadir && (
           <p style={{ fontSize: 11.5, color: 'var(--gris-claro)', marginTop: 8 }}>Máximo de {MAX_ACCIONES} acciones alcanzado.</p>
         )}
-
-        <button className="btn-primario" disabled={!puedeGuardar} onClick={guardarPlan} style={{ marginTop: 16 }}>
-          {guardado ? 'Plan guardado ✓' : 'Guardar plan trimestral'}
-        </button>
-        {!puedeGuardar && (
-          <p style={{ fontSize: 11.5, color: 'var(--rojo)', marginTop: 6 }}>
-            Necesitas al menos {MIN_ACCIONES} acciones para guardar el plan.
-          </p>
-        )}
       </div>
 
       {catalogoAbierto && (
         <div className="card">
           <h2>Catálogo de acciones</h2>
-          <div className="filtro-maquina">
-            {['todas', 'M2', 'M3'].map((m) => (
-              <button key={m} className={filtroMaquina === m ? 'activo' : ''} onClick={() => setFiltroMaquina(m)}>
-                {m === 'todas' ? 'Todas' : m}
-              </button>
-            ))}
-          </div>
 
           {!form.accion_catalogo_id && (
-            <div className="catalogo-lista">
-              {catalogoFiltrado.map((a) => (
-                <button key={a.id} className="catalogo-item" onClick={() => elegirAccion(a)}>
-                  <span className={`badge-maquina ${a.maquina.toLowerCase()}`}>{a.maquina}</span>
-                  <span className="catalogo-item-texto">
-                    <span className="nombre">{a.nombre}</span>
-                    <span className="desc">{a.descripcion}</span>
-                  </span>
-                </button>
+            <>
+              {Object.entries(catalogoAgrupado).map(([categoria, items]) => (
+                <div key={categoria} className="catalogo-grupo">
+                  <div className="catalogo-grupo-titulo">{categoria}</div>
+                  <div className="catalogo-lista">
+                    {items.map((a) => (
+                      <button key={a.id} className="catalogo-item" onClick={() => elegirAccion(a)}>
+                        <span className="catalogo-item-texto">
+                          <span className="nombre">{a.nombre}</span>
+                          <span className="desc">{a.descripcion}</span>
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
               ))}
-            </div>
+              <button className="btn-secundario" style={{ width: '100%', marginTop: 8 }} onClick={() => setCatalogoAbierto(false)}>
+                Cerrar
+              </button>
+            </>
           )}
 
           {form.accion_catalogo_id && (
             <div className="form-accion">
-              <div className="form-accion-titulo">{accionCatalogo(form.accion_catalogo_id)?.nombre}</div>
+              <div className="form-accion-titulo">{etiquetaAccion(accionCatalogo(form.accion_catalogo_id))}</div>
 
               <label>¿A quién se dirige?</label>
               <input
