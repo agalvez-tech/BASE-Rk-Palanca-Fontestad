@@ -68,6 +68,15 @@ export const CRM = [
     estilo: 'llaves',
     icono: '🔑',
   },
+  {
+    id: 'automatizaciones',
+    etiqueta: 'Automatización · Panel',
+    nombre: 'FLUJO DE AUTOMATIZACIONES',
+    desc: 'De la captación a la notaría: los 9 pasos automáticos del proceso',
+    url: 'https://contratos-498808.web.app/flujo-automatizaciones.html',
+    estilo: 'flujo',
+    icono: '🤖',
+  },
 ]
 
 export const PROCESOS_BASE = [

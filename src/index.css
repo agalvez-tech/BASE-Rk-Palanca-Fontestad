@@ -309,6 +309,15 @@ body{
 .lz-llaves .icono{background:var(--naranja-suave);color:var(--naranja);font-size:24px}
 .lz-llaves .desc{color:var(--gris)}
 .lz-llaves .ir{background:var(--naranja);color:#fff}
+/* FLUJO DE AUTOMATIZACIONES */
+.lz-flujo{background:var(--espacio);color:#fff;box-shadow:0 14px 36px rgba(14,12,18,.32)}
+.lz-flujo::before{content:'';position:absolute;right:-40px;bottom:-50px;width:170px;height:170px;border-radius:50%;background:radial-gradient(circle at 40% 40%, rgba(255,185,99,.55), rgba(207,115,27,.25) 60%, transparent 75%);transition:transform .35s ease}
+.lz-flujo:hover{box-shadow:0 22px 50px rgba(207,115,27,.35)}
+.lz-flujo:hover::before{transform:scale(1.18)}
+.lz-flujo .etiqueta{color:#ffd9ae;opacity:1}
+.lz-flujo .icono{background:rgba(255,255,255,.1);color:#ffc586;border:1px solid rgba(255,255,255,.16);font-size:24px}
+.lz-flujo .desc{color:rgba(255,255,255,.7)}
+.lz-flujo .ir{background:rgba(255,255,255,.12);color:#fff}
 
 /* =============== MARQUEE =============== */
 .marquee{
