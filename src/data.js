@@ -4,6 +4,7 @@ export const CATEGORIAS_BASE = [
   'Generación de negocio',
   'Calculadoras',
   'Alquiler',
+  'Obra nueva',
   'Fotografía',
   'Conocimiento · NotebookLM',
   'Cómo trabajamos en RK',
@@ -103,6 +104,9 @@ export const PROCESOS_BASE = [
   { cat: 'Alquiler', tipo: 'FORM', nombre: 'Formulario alquiler · Propietario', url: 'https://docs.google.com/forms/d/e/1FAIpQLSdz7GAzmIhKVfhntMVBybW5AyeQxhh4AJC7BjqzWOjBYjUtuw/viewform?usp=sf_link', desc: 'Recogida de datos del propietario para gestionar el alquiler.' },
   { cat: 'Alquiler', tipo: 'FORM', nombre: 'Formulario alquiler · Inquilinos', url: 'https://docs.google.com/forms/d/e/1FAIpQLSf1vTpZPTHmTgcuYsGNffh15PeeJEc_n5MaRfSIvKnd5bElqA/viewform?usp=sf_link', desc: 'Recogida de datos y documentación de candidatos inquilinos.' },
   { cat: 'Conocimiento · NotebookLM', tipo: 'NOTEBOOK', nombre: 'Alquileres', url: 'https://notebooklm.google.com/notebook/886c09d7-a266-4fe6-84f8-1cd312e73965?pli=1', desc: 'Base de conocimiento con toda la operativa de alquileres.' },
+
+  { cat: 'Obra nueva', tipo: 'APP', nombre: 'Plataforma de gestión', url: 'https://plataforma-gestion-phi.vercel.app/', desc: 'Plataforma de gestión de obra nueva. Accede con tu correo corporativo.' },
+  { cat: 'Obra nueva', tipo: 'APP', nombre: 'Formas de pago', url: 'https://formas-de-pago-obra-nueva.vercel.app/', desc: 'Calculadora de la forma de pago de una promoción: reserva, contrato y cuotas del aplazado.' },
 
   { cat: 'Fotografía', tipo: 'APP', nombre: 'Formulario Solicitud de fotografía', url: 'https://infopalanca.github.io/formulario-reportaje/', desc: 'Solicitud de reportaje fotográfico para un inmueble.' },
 
