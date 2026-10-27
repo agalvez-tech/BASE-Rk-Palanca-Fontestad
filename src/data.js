@@ -131,6 +131,8 @@ export const PROCESOS_BASE = [
 
   { cat: 'Cómo trabajamos en RK', tipo: 'WEB', nombre: 'Generación y asignación de contactos', url: 'https://manual-contactos.vercel.app/', desc: 'Cómo se clasifican, reparten y asignan los contactos. Reglas, comisiones y puntos Horus.' },
   { cat: 'Cómo trabajamos en RK', tipo: 'WEB', nombre: 'Tu ruta de crecimiento', url: 'https://ruta-crecimiento.vercel.app/', desc: 'El sistema de niveles RK: del Escudero a Top Producer. Qué desbloquea cada nivel.' },
+  { cat: 'Cómo trabajamos en RK', tipo: 'PDF', nombre: 'Manual de bienvenida y convivencia', url: '/formacion/Manual_Bienvenida_RK_Palanca_2026.pdf', desc: 'Manual para nuevas incorporaciones (edición 2026): cultura, atención al cliente, ética, herramientas y contactos del equipo.' },
+  { cat: 'Cómo trabajamos en RK', tipo: 'WEB', nombre: 'Aula Formativa', url: 'https://aula-formativa-rk.vercel.app/', desc: 'El programa de formación de los nuevos agentes, sesión a sesión (octubre–noviembre 2026), con sus objetivos y el dossier de bienvenida.' },
   { cat: 'Gems · Gestión y marketing', tipo: 'GEM', nombre: 'Asistente legal', url: 'https://gemini.google.com/gem/5d3a384d500e', desc: 'Resuelve dudas legales del día a día comercial.' },
   { cat: 'Gems · Gestión y marketing', tipo: 'GEM', nombre: 'Descripción de viviendas', url: 'https://gemini.google.com/gem/360bc9e24e5b', desc: 'Redacta descripciones atractivas para los anuncios de inmuebles.' },
   { cat: 'Gems · Gestión y marketing', tipo: 'GEM', nombre: 'Creador de contenido', url: 'https://gemini.google.com/gem/2980ff6ea475', desc: 'Genera contenido de marketing con la voz de la marca.' },
