@@ -43,6 +43,15 @@ export const CRM = [
     icono: '📅',
   },
   {
+    id: 'firmas-arras',
+    etiqueta: 'Agenda · Arras',
+    nombre: 'CALENDARIO FIRMAS ARRAS',
+    desc: 'Próximas firmas de arras',
+    url: 'https://contratos-498808.web.app/arras.html',
+    estilo: 'firmas',
+    icono: '✍️',
+  },
+  {
     id: 'vacaciones',
     etiqueta: 'Equipo · Cuadrante',
     nombre: 'VACACIONES Y ALIADOS',
