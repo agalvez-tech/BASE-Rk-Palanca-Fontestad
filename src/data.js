@@ -82,7 +82,7 @@ export const CRM = [
     id: 'automatizaciones',
     etiqueta: 'Automatización · Panel',
     nombre: 'FLUJO DE AUTOMATIZACIONES',
-    desc: 'De la captación a la notaría: los 9 pasos automáticos del proceso',
+    desc: 'De la captación a la postventa: los 12 pasos del proceso, con firma digital, notaría y postventa',
     url: 'https://contratos-498808.web.app/flujo-automatizaciones.html',
     estilo: 'flujo',
     icono: '🤖',
