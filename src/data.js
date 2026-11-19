@@ -96,6 +96,7 @@ export const PROCESOS_BASE = [
   { cat: 'Captación', tipo: 'DOC', nombre: 'Aceptación del arrendatario · visitas y venta', url: 'https://docs.google.com/document/d/1hrBHr7lgJRMJi4slAyYFYd2_ciNV7KCs/edit#heading=h.gjdgxs', desc: 'Autorización del inquilino actual para realizar visitas y venta del inmueble.' },
   { cat: 'Captación', tipo: 'PDF', nombre: 'Coste de acciones de marketing', url: 'https://drive.google.com/file/d/1-LyddzGJl3Rd9tvR_7mRosicRBXbHEx-/view', desc: 'Lo que invertimos en vender una vivienda: coste de cada acción y contactos que genera. Argumentario para el propietario.' },
   { cat: 'Captación', tipo: 'PDF', nombre: 'Proceso de venta en 12 pasos', url: 'https://drive.google.com/file/d/1ZbViJoXViddGvDOfs9frZgvqNohpazS2/view', desc: 'Cómo vendemos su vivienda: el recorrido completo de Hoy a la notaría en 12 pasos.' },
+  { cat: 'Captación', tipo: 'WEB', nombre: 'Herramientas cita captación', url: 'https://drive.google.com/drive/u/0/folders/1MvbuKe0V2rGBQmtB4814evO6v2kYTpoY', desc: 'Carpeta con los materiales para preparar y llevar a la cita de captación.' },
   { cat: 'Captación', tipo: 'DOC', nombre: 'Autorización · CEE', url: 'https://docs.google.com/document/d/1Sf5LY--xm9SsUg2VGw8urdWN2ocXKd1O/edit#heading=h.gjdgxs', desc: 'Autorización para la tramitación del Certificado de Eficiencia Energética.' },
 
   // ---------- Venta y compraventa ----------
