@@ -1,8 +1,8 @@
 export const CATEGORIAS_BASE = [
   'Captación',
-  'Venta y compraventa',
+  'Compra',
+  'Oferta / Arras',
   'Generación de negocio',
-  'Calculadoras',
   'Alquiler',
   'Obra nueva',
   'Fotografía',
@@ -99,26 +99,26 @@ export const PROCESOS_BASE = [
   { cat: 'Captación', tipo: 'WEB', nombre: 'Herramientas cita captación', url: 'https://drive.google.com/drive/u/0/folders/1MvbuKe0V2rGBQmtB4814evO6v2kYTpoY', desc: 'Carpeta con los materiales para preparar y llevar a la cita de captación.' },
   { cat: 'Captación', tipo: 'DOC', nombre: 'Autorización · CEE', url: 'https://docs.google.com/document/d/1Sf5LY--xm9SsUg2VGw8urdWN2ocXKd1O/edit#heading=h.gjdgxs', desc: 'Autorización para la tramitación del Certificado de Eficiencia Energética.' },
 
-  // ---------- Venta y compraventa ----------
-  { cat: 'Venta y compraventa', tipo: 'DOC', nombre: 'Oferta de compra (rellenar en la vivienda)', url: 'https://docs.google.com/document/d/1N689jUaNGpDScfbL8SRGydOt9Qu8Rvk7/edit', desc: 'Documento para rellenar a mano cuando el cliente firma la oferta en la propia vivienda.' },
-  { cat: 'Venta y compraventa', tipo: 'APP', nombre: 'Propuesta de compra · preparar y firma digital', url: 'https://propuesta-compra.vercel.app/', desc: 'Prepara la propuesta y envíala a firmar por Signaturit o en firma presencial.' },
-  { cat: 'Venta y compraventa', tipo: 'APP', nombre: 'Perfil del comprador', url: 'https://perfil-comprador.vercel.app/', desc: 'Perfil del comprador, checklist y documentos tras la propuesta firmada. Extrae los datos con IA y lo envía todo al captador por Slack.' },
-  { cat: 'Venta y compraventa', tipo: 'APP', nombre: 'CALMA', url: 'https://calma-palanca.vercel.app/', desc: 'Asistente de decisión para el comprador: 27 preguntas para decidir con más claridad.' },
-  { cat: 'Venta y compraventa', tipo: 'WEB', nombre: 'Herramientas del comprador', url: 'https://drive.google.com/drive/u/0/folders/1_WNHbghISCzVouvb2W8uCBjOwtkpNtX3', desc: 'Carpeta con los materiales y herramientas para trabajar con el comprador.' },
-  { cat: 'Venta y compraventa', tipo: 'DOC', nombre: 'Oferta de compra ASICVAL', url: 'https://docs.google.com/document/d/1KRj52EXV8I_A2VG4ZmO7BLXxSnzi03P6/edit', desc: 'Versión de oferta de compra con modelo ASICVAL.' },
-  { cat: 'Venta y compraventa', tipo: 'APP', nombre: 'Formulario arras · Comprador y vendedor', url: 'https://contrato-arras-522842131600.europe-west3.run.app/', desc: 'Genera el contrato de arras con los datos de comprador y vendedor.' },
-  { cat: 'Venta y compraventa', tipo: 'APP', nombre: 'Gastos de venta · Informe para propietario', url: 'https://gastos-de-venta.vercel.app/', desc: 'Rellena los datos y descarga un informe de gastos de venta con imagen de marca RK, listo para entregar al propietario.' },
-  { cat: 'Venta y compraventa', tipo: 'APP', nombre: 'Informe para bajada precio propietarios', url: 'https://informes-de-evaluaci-n.vercel.app/', desc: 'Genera el informe de valoración (IRM) con la marca RK a partir del PDF de evaluación.' },
-  { cat: 'Venta y compraventa', tipo: 'PDF', nombre: 'Certificado de titularidad · BBVA (reservas)', url: 'https://drive.google.com/file/d/1umduiXpIXQNsjsbsWN1VfkkffByeae5K/view', desc: 'Cuenta para el ingreso de reservas. Titular: Prodeinmo 99 Consultores.' },
-  { cat: 'Venta y compraventa', tipo: 'PDF', nombre: 'Certificado de titularidad · Santander (honorarios)', url: 'https://drive.google.com/file/d/1C0whMraCj8SWhcKGKq1x8Qodh-cYTdXP/view', desc: 'Cuenta para el pago de honorarios. Titular: Prodeinmo 99 Consultores.' },
+  // ---------- Compra y Oferta / Arras ----------
+  { cat: 'Oferta / Arras', tipo: 'DOC', nombre: 'Oferta de compra (rellenar en la vivienda)', url: 'https://docs.google.com/document/d/1N689jUaNGpDScfbL8SRGydOt9Qu8Rvk7/edit', desc: 'Documento para rellenar a mano cuando el cliente firma la oferta en la propia vivienda.' },
+  { cat: 'Oferta / Arras', tipo: 'APP', nombre: 'Propuesta de compra · preparar y firma digital', url: 'https://propuesta-compra.vercel.app/', desc: 'Prepara la propuesta y envíala a firmar por Signaturit o en firma presencial.' },
+  { cat: 'Compra', tipo: 'APP', nombre: 'Perfil del comprador', url: 'https://perfil-comprador.vercel.app/', desc: 'Perfil del comprador, checklist y documentos tras la propuesta firmada. Extrae los datos con IA y lo envía todo al captador por Slack.' },
+  { cat: 'Compra', tipo: 'APP', nombre: 'CALMA', url: 'https://calma-palanca.vercel.app/', desc: 'Asistente de decisión para el comprador: 27 preguntas para decidir con más claridad.' },
+  { cat: 'Compra', tipo: 'WEB', nombre: 'Herramientas del comprador', url: 'https://drive.google.com/drive/u/0/folders/1_WNHbghISCzVouvb2W8uCBjOwtkpNtX3', desc: 'Carpeta con los materiales y herramientas para trabajar con el comprador.' },
+  { cat: 'Oferta / Arras', tipo: 'DOC', nombre: 'Oferta de compra ASICVAL', url: 'https://docs.google.com/document/d/1KRj52EXV8I_A2VG4ZmO7BLXxSnzi03P6/edit', desc: 'Versión de oferta de compra con modelo ASICVAL.' },
+  { cat: 'Oferta / Arras', tipo: 'APP', nombre: 'Formulario arras · Comprador y vendedor', url: 'https://contrato-arras-522842131600.europe-west3.run.app/', desc: 'Genera el contrato de arras con los datos de comprador y vendedor.' },
+  { cat: 'Captación', tipo: 'APP', nombre: 'Gastos de venta · Informe para propietario', url: 'https://gastos-de-venta.vercel.app/', desc: 'Rellena los datos y descarga un informe de gastos de venta con imagen de marca RK, listo para entregar al propietario.' },
+  { cat: 'Captación', tipo: 'APP', nombre: 'Informe para bajada precio propietarios', url: 'https://informes-de-evaluaci-n.vercel.app/', desc: 'Genera el informe de valoración (IRM) con la marca RK a partir del PDF de evaluación.' },
+  { cat: 'Oferta / Arras', tipo: 'PDF', nombre: 'Certificado de titularidad · BBVA (reservas)', url: 'https://drive.google.com/file/d/1umduiXpIXQNsjsbsWN1VfkkffByeae5K/view', desc: 'Cuenta para el ingreso de reservas. Titular: Prodeinmo 99 Consultores.' },
+  { cat: 'Oferta / Arras', tipo: 'PDF', nombre: 'Certificado de titularidad · Santander (honorarios)', url: 'https://drive.google.com/file/d/1C0whMraCj8SWhcKGKq1x8Qodh-cYTdXP/view', desc: 'Cuenta para el pago de honorarios. Titular: Prodeinmo 99 Consultores.' },
 
   // ---------- Generación de negocio ----------
   { cat: 'Generación de negocio', tipo: 'DOC', nombre: 'Contrato Win Win', url: 'https://docs.google.com/document/d/1LMlXH28d0A6HjOCFtEbnw8QSVizfvOns/edit', desc: 'Acuerdo de colaboración Win Win para generación de negocio.' },
   { cat: 'Generación de negocio', tipo: 'APP', nombre: 'HAMMER · Seguimiento de prospectos', url: 'https://rk-hammer-bueno.vercel.app/', desc: 'Herramienta para el seguimiento de prospectos y su conversión en negocio.' },
 
-  { cat: 'Calculadoras', tipo: 'APP', nombre: 'Calculadora de gastos · Comprador', url: 'https://calculadora-de-gastos-theta.vercel.app/', desc: 'Calcula los gastos de compra del cliente (ITP/AJD, notaría, registro, gestoría…).' },
-  { cat: 'Calculadoras', tipo: 'APP', nombre: 'Calculadora de rentabilidad', url: 'https://calculadora-rentabilidad-one.vercel.app/', desc: 'Rentabilidad de una inversión inmobiliaria para el cliente inversor.' },
-  { cat: 'Calculadoras', tipo: 'APP', nombre: 'Calculadora de compra VPO/VPP', url: 'https://compra-vpo-vpp.vercel.app/', desc: 'Cálculos para la compra de vivienda de protección oficial / pública.' },
+  { cat: 'Compra', tipo: 'APP', nombre: 'Calculadora de gastos · Comprador', url: 'https://calculadora-de-gastos-theta.vercel.app/', desc: 'Calcula los gastos de compra del cliente (ITP/AJD, notaría, registro, gestoría…).' },
+  { cat: 'Compra', tipo: 'APP', nombre: 'Calculadora de rentabilidad · Rentabilidad para inversores', url: 'https://calculadora-rentabilidad-one.vercel.app/', desc: 'Rentabilidad de una inversión inmobiliaria para el cliente inversor.' },
+  { cat: 'Compra', tipo: 'APP', nombre: 'Calculadora de compra VPO/VPP', url: 'https://compra-vpo-vpp.vercel.app/', desc: 'Cálculos para la compra de vivienda de protección oficial / pública.' },
 
   { cat: 'Alquiler', tipo: 'DOC', nombre: 'Encargo de gestión de alquiler · Plus o Premium', url: '/alquiler/Encargo_Gestion_Alquiler_Plus_o_Premium.docx', desc: 'Encargo en exclusiva del propietario para gestionar el alquiler, eligiendo la modalidad Plus o Premium.' },
   { cat: 'Alquiler', tipo: 'DOC', nombre: 'Oferta de alquiler · Alquila Fácil', url: '/alquiler/Oferta_Alquiler_Inquilino.docx', desc: 'Reserva y oferta del inquilino, con el cuestionario de control de la información recibida.' },
